@@ -36,8 +36,13 @@ namespace ModelProducerConsumer
                 // TODO May by it is get bad perfomance, to send Set signal for all Dequeue?
                 _producerEvent.Set();
                 _realWorker.ProcessNumbers(work);
-                Write();
+                WriteLog();
             }
+        }
+
+        private void WriteLog()
+        {
+            throw new NotImplementedException();
         }
     }
 }
