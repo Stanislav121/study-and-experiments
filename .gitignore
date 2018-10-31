@@ -39,3 +39,5 @@
 # ignore folders for comiled files
 bin/
 obj/
+/Education/Concurrency.HerbSutter/ModelProducerConsumer/.vs/ModelProducerConsumer/v15/Server/sqlite3
+/DelegateAndFunctions/.vs/DelegateAndFunctions/v15/Server/sqlite3
