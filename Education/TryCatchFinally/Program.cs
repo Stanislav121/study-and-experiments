@@ -3,12 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace TryCatchFinally
 {
     class Program
     {
         static void Main(string[] args)
+        {
+            IsNotCallInUsing();
+            //TryCatchFinnalyException();
+            //TestFinnally();            
+            
+            Console.WriteLine("Press any key to exit");
+            Console.ReadLine();
+        }
+
+        private static void IsNotCallInUsing()
+        {
+            using (var a = new DisposableCorrapted())
+            {                
+                Console.WriteLine("using");
+            }
+        }      
+
+        private static void TryCatchFinnalyException()
         {
             int result;
             try
@@ -21,7 +40,6 @@ namespace TryCatchFinally
             }
             
             Console.WriteLine(result);
-            Console.ReadLine();
         }
 
         private static int FaultedMethod()
@@ -30,6 +48,7 @@ namespace TryCatchFinally
             try
             {
                 a = 1 + 2;
+                //throw new Exception();
                 return a;
             }
             catch (Exception e)
@@ -40,9 +59,61 @@ namespace TryCatchFinally
             {
                 a = 7;
                 ++a;
-                throw new Exception(a.ToString());
+                //return a; Compile time error
+                //throw new Exception(a.ToString());
             }
             return 10;
         }
+
+        #region When finnaly not called
+
+        private static void TestFinnally()
+        {
+            //TryCatchFinnalyException();
+            
+            try
+            {
+                FinnalyIsNotCall();
+            }
+            catch(Exception ex)
+            {
+
+            }
+        }
+
+        private static void FinnalyIsNotCallInUsing()
+        {
+            using (var a = new Disposable())
+            {
+                throw new Exception();
+                Console.WriteLine("using");
+            }
+        }    
+
+        private static void FinnalyIsNotCall()
+        {
+            File.Delete("output.txt");
+            var file = new StreamWriter("output.txt");
+            try
+            {
+                //System.Environment.Exit( 0 );
+                //throw new Exception();
+                //Recurcion(); // throw StackOverflowException
+            }
+            finally
+            {
+                file.WriteLine("finally");
+                file.Flush();
+            }            
+        }
+
+        private static void Recurcion()
+        {
+            var a = new Object();
+            Recurcion();
+        }
+
+        #endregion
+
     }
 }
