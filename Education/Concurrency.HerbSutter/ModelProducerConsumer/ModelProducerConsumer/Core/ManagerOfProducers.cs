@@ -19,7 +19,7 @@ namespace ModelProducerConsumer.Core
         public ManagerOfProducers()
         {
             producers = new List<ProducerOfWork>();
-            _producerConsumerQueue = new ConcurrentQueueLimitedSize<NumbersToSum>(25);
+            _producerConsumerQueue = new ConcurrentQueueLimitedSize<NumbersToSum>(7);
             _producerEvent = new ManualResetEvent(true);
 
             consumers = new List<ConsumerOfWork>();

@@ -28,8 +28,12 @@ namespace ModelProducerConsumer.Core
 
         public void ProcessQueue()
         {
-            while (!_managerOfProducers.IsProducingStop())
+            while (true)
             {
+                var stop = _managerOfProducers.IsProducingStop() && _producerConsumerQueue.Count == 0;
+                if (stop)
+                    break;
+
                 NumbersToSum work;
                 var isGetted = _producerConsumerQueue.TryDequeue(out work);
                 if (!isGetted)

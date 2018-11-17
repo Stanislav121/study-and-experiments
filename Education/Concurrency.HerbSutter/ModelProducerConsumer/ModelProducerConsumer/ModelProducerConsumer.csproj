@@ -49,6 +49,8 @@
     <Compile Include="Core\ConsumerOfWork.cs" />
     <Compile Include="GeneratorOfNumbersToSum.cs" />
     <Compile Include="Core\ManagerOfProducers.cs" />
+    <Compile Include="GeneratorOfNumbersToSumConsistently.cs" />
+    <Compile Include="GeneratorOfNumbersToSumRandom.cs" />
     <Compile Include="NumbersToSum.cs" />
     <Compile Include="Core\ProducerOfWork.cs" />
     <Compile Include="Program.cs" />

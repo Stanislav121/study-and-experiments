@@ -13,9 +13,18 @@ namespace ModelProducerConsumer
         static void Main(string[] args)
         {
             var manager = new ManagerOfProducers();
-            manager.AddProducer(new GeneratorOfNumbersToSum(10));
+            manager.AddProducer(new GeneratorOfNumbersToSumConsistently());
+            manager.AddProducer(new GeneratorOfNumbersToSumConsistently());
+            manager.AddProducer(new GeneratorOfNumbersToSumConsistently());
+            manager.AddConsumer(new SummatorOfNumbers());
+            manager.AddConsumer(new SummatorOfNumbers());
+            manager.AddConsumer(new SummatorOfNumbers());
+            manager.AddConsumer(new SummatorOfNumbers());
+            manager.AddConsumer(new SummatorOfNumbers());
             manager.AddConsumer(new SummatorOfNumbers());
 
+            Console.ReadLine();
+            manager.Stop();
             Console.ReadLine();
         }
 

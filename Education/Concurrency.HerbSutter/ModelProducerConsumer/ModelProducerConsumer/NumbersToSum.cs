@@ -8,10 +8,10 @@ namespace ModelProducerConsumer
 {
     class NumbersToSum
     {
-        public int A;
+        public long A;
 
-        public int B;
+        public long B;
 
-        public int Sum;
+        public long Sum;
     }
 }
