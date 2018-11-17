@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using ModelProducerConsumer.Core;
 
 namespace ModelProducerConsumer
 {
@@ -11,7 +12,11 @@ namespace ModelProducerConsumer
     {
         static void Main(string[] args)
         {
-            //TestYeild();
+            var manager = new ManagerOfProducers();
+            manager.AddProducer(new GeneratorOfNumbersToSum(10));
+            manager.AddConsumer(new SummatorOfNumbers());
+
+            Console.ReadLine();
         }
 
         private static void TestYeild()

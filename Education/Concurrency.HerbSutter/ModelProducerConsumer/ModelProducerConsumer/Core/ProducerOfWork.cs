@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections.Concurrent;
 using System.Threading;
+using log4net;
 
 namespace ModelProducerConsumer.Core
 {
@@ -15,14 +16,19 @@ namespace ModelProducerConsumer.Core
         private ManualResetEvent _producerEvent;
         private bool _stop;
 
+        private GeneratorOfNumbersToSum _realProduce;
+        private ILog _log;
+
         public ProducerOfWork(GeneratorOfNumbersToSum realProducer, ConcurrentQueueLimitedSize<NumbersToSum> producerConsumerQueue, ManualResetEvent producerEvent)
         {
             _producerConsumerQueue = producerConsumerQueue;
             _producerEvent = producerEvent;
+            _realProduce = realProducer;
+            _log = LogManager.GetLogger(typeof(ProducerOfWork));
         }
 
         // TODO Convert to Generic
-        public void ProduceWork()
+        public void StartProduceWork()
         {
             while (!_stop)
             {
@@ -69,12 +75,14 @@ namespace ModelProducerConsumer.Core
 
         private NumbersToSum GetWork()
         {
-            return new NumbersToSum();
+            return _realProduce.Generate();
         }
 
         private void WriteLog(NumbersToSum work)
         {
-            throw new NotImplementedException();
+            var message = string.Format("{0} {1}", work.A, work.B);
+            Console.WriteLine(message);
+            //_log.Info(message);
         }
     }
 }

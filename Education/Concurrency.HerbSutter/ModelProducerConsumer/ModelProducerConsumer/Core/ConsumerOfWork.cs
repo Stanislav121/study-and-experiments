@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using log4net;
 
 namespace ModelProducerConsumer.Core
 {
@@ -14,35 +15,44 @@ namespace ModelProducerConsumer.Core
         private ManagerOfProducers _managerOfProducers;
         private SummatorOfNumbers _realWorker;
 
+        private ILog _log;
+
         public ConsumerOfWork(SummatorOfNumbers realWorker, ManagerOfProducers managerOfProducers, ConcurrentQueueLimitedSize<NumbersToSum> producerConsumerQueue, ManualResetEvent producerEvent)
         {
             _producerConsumerQueue = producerConsumerQueue;
             _producerEvent = producerEvent;
             _managerOfProducers = managerOfProducers;
             _realWorker = realWorker;
+            _log = LogManager.GetLogger(typeof(ConsumerOfWork));
         }
 
-        public void ProcessWork()
+        public void ProcessQueue()
         {
             while (!_managerOfProducers.IsProducingStop())
             {
                 NumbersToSum work;
                 var isGetted = _producerConsumerQueue.TryDequeue(out work);
                 if (!isGetted)
-                {                    
+                {
                     // TODO Wait of filling
+                    _producerEvent.Set();
+                    Thread.Sleep(50);
+                    // TODO Very bad, use ManualResetEvent
+                    continue;
                 }
 
                 // TODO May by it is get bad perfomance, to send Set signal for all Dequeue?
                 _producerEvent.Set();
                 _realWorker.ProcessNumbers(work);
-                WriteLog();
+                WriteLog(work);
             }
         }
 
-        private void WriteLog()
+        private void WriteLog(NumbersToSum work)
         {
-            throw new NotImplementedException();
+            var message = string.Format("{0} {1} {2}", work.A, work.B, work.Sum);
+            Console.WriteLine(message);
+            //_log.Info(message);
         }
     }
 }

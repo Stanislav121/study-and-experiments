@@ -10,7 +10,7 @@ namespace ModelProducerConsumer
     {
         public void ProcessNumbers(NumbersToSum numbers)
         {
-            var sum = numbers.A + numbers.B;
+            numbers.Sum = numbers.A + numbers.B;
         }
     }
 }

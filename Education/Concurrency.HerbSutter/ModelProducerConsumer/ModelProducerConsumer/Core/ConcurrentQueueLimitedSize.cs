@@ -14,14 +14,11 @@ namespace ModelProducerConsumer.Core
         //TODO Check is this code thread-safe
         public readonly int MaxSize;
 
-        private readonly ConcurrentQueue<T> _queue;
-
-        private readonly object _sync;
+        private readonly object _sync = new object();
 
         public ConcurrentQueueLimitedSize(int maxSize)
         {
             MaxSize = maxSize;
-            _queue = new ConcurrentQueue<T>();
         }
 
         public new bool Enqueue(T item)
@@ -29,17 +26,17 @@ namespace ModelProducerConsumer.Core
             //TODO Release it without Lock
             lock (_sync)
             {
-                if (_queue.Count >= MaxSize)
+                if (Count >= MaxSize)
                     return false;
 
-                _queue.Enqueue(item);
+                base.Enqueue(item);
                 return true;
             }
         }
 
         public bool IsFull()
         {
-            return _queue.Count >= MaxSize;
+            return Count >= MaxSize;
         }
     }
 }

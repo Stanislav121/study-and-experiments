@@ -10,6 +10,7 @@ namespace ModelProducerConsumer.Core
     class ManagerOfProducers
     {
         private List<ProducerOfWork> producers;
+        private List<ConsumerOfWork> consumers;
         private bool _stop;
 
         private ConcurrentQueueLimitedSize<NumbersToSum> _producerConsumerQueue;
@@ -20,24 +21,37 @@ namespace ModelProducerConsumer.Core
             producers = new List<ProducerOfWork>();
             _producerConsumerQueue = new ConcurrentQueueLimitedSize<NumbersToSum>(25);
             _producerEvent = new ManualResetEvent(true);
+
+            consumers = new List<ConsumerOfWork>();
         }
 
         public void AddProducer(GeneratorOfNumbersToSum realProducer)
         {
             if (_stop)
                 return;
-            producers.Add(new ProducerOfWork(realProducer, _producerConsumerQueue, _producerEvent));
+            var producer = new ProducerOfWork(realProducer, _producerConsumerQueue, _producerEvent);
+            producers.Add(producer);
+            var thread = new Thread(producer.StartProduceWork);
+            thread.Start();
+        }
+
+        public void AddConsumer(SummatorOfNumbers realWorker)
+        {
+            var consumer = new ConsumerOfWork(new SummatorOfNumbers(), this, _producerConsumerQueue, _producerEvent);
+            consumers.Add(consumer);
+            var thread = new Thread(consumer.ProcessQueue);
+            thread.Start();
         }
 
         public void Stop()
         {
-            _stop = true;
+            _stop = true;            
             producers.ForEach(s => s.Stop());
         }
 
         public bool IsProducingStop()
         {
-            // TODO Made it as varaibale -> public bool IsProducingStop;
+            // TODO Made it as varaibale -> public bool IsProducingStop;            
             return producers.All(s => s.IsStopped);
         }
     }
