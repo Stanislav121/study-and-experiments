@@ -8,14 +8,14 @@ namespace ModelProducerConsumer
 {
     class GeneratorOfNumbersToSumConsistently : GeneratorOfNumbersToSum
     {
-        private long number;
+        public long Number { get; private set; }
 
         public NumbersToSum Generate()
         {
             var numbers = new NumbersToSum();
-            numbers.A = number;
-            numbers.B = number;
-            number++;
+            numbers.A = Number;
+            numbers.B = Number;
+            Number++;
             return numbers;
         }
     }
