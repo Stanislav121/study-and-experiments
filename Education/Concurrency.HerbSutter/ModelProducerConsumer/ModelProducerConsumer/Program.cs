@@ -11,7 +11,7 @@ namespace ModelProducerConsumer
     {
         static void Main(string[] args)
         {
-            TestYeild();
+            //TestYeild();
         }
 
         private static void TestYeild()

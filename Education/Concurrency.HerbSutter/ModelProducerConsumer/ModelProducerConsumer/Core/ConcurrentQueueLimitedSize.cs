@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections.Concurrent;
 
-namespace ModelProducerConsumer
+namespace ModelProducerConsumer.Core
 {
     class ConcurrentQueueLimitedSize<T> : ConcurrentQueue<T>
     {

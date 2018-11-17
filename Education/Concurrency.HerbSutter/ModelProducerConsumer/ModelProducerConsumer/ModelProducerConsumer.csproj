@@ -42,12 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConcurrentQueueLimitedSize.cs" />
-    <Compile Include="ConsumerOfWork.cs" />
+    <Compile Include="Core\ConcurrentQueueLimitedSize.cs" />
+    <Compile Include="Core\ConsumerOfWork.cs" />
     <Compile Include="GeneratorOfNumbersToSum.cs" />
-    <Compile Include="ManagerOfProducers.cs" />
+    <Compile Include="Core\ManagerOfProducers.cs" />
     <Compile Include="NumbersToSum.cs" />
-    <Compile Include="ProducerOfWork.cs" />
+    <Compile Include="Core\ProducerOfWork.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SummatorOfNumbers.cs" />
@@ -55,5 +55,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
