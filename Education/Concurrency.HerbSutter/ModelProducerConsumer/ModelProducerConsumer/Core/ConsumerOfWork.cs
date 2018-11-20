@@ -12,15 +12,17 @@ namespace ModelProducerConsumer.Core
     {
         private ConcurrentQueueLimitedSize<NumbersToSum> _producerConsumerQueue;
         private ManualResetEvent _producerEvent;
+        private ManualResetEvent _consumerEvent;
         private ManagerOfProducers _managerOfProducers;
         private SummatorOfNumbers _realWorker;
 
         private ILog _log;
 
-        public ConsumerOfWork(SummatorOfNumbers realWorker, ManagerOfProducers managerOfProducers, ConcurrentQueueLimitedSize<NumbersToSum> producerConsumerQueue, ManualResetEvent producerEvent)
+        public ConsumerOfWork(SummatorOfNumbers realWorker, ManagerOfProducers managerOfProducers, ConcurrentQueueLimitedSize<NumbersToSum> producerConsumerQueue, ManualResetEvent producerEvent, ManualResetEvent consumerEvent)
         {
             _producerConsumerQueue = producerConsumerQueue;
             _producerEvent = producerEvent;
+            _consumerEvent = consumerEvent;
             _managerOfProducers = managerOfProducers;
             _realWorker = realWorker;
             _log = LogManager.GetLogger(typeof(ConsumerOfWork));
@@ -38,10 +40,14 @@ namespace ModelProducerConsumer.Core
                 var isGetted = _producerConsumerQueue.TryDequeue(out work);
                 if (!isGetted)
                 {
-                    // TODO Wait of filling
+                    // Wait of filling
                     _producerEvent.Set();
-                    Thread.Sleep(50);
+
                     // TODO Very bad, use ManualResetEvent
+                    //Thread.Yield();
+                    Thread.Sleep(0);
+                    //_consumerEvent.WaitOne();
+                    //Thread.SpinWait(1);
                     continue;
                 }
 

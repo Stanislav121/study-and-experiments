@@ -17,13 +17,15 @@ namespace ModelProducerConsumer.Core
         private bool _stop;
 
         private GeneratorOfNumbersToSum _realProduce;
+        private ManualResetEvent _consumerEvent;
         private ILog _log;
 
-        public ProducerOfWork(GeneratorOfNumbersToSum realProducer, ConcurrentQueueLimitedSize<NumbersToSum> producerConsumerQueue, ManualResetEvent producerEvent)
+        public ProducerOfWork(GeneratorOfNumbersToSum realProducer, ConcurrentQueueLimitedSize<NumbersToSum> producerConsumerQueue, ManualResetEvent producerEvent, ManualResetEvent consumerEvent)
         {
             _producerConsumerQueue = producerConsumerQueue;
             _producerEvent = producerEvent;
             _realProduce = realProducer;
+            _consumerEvent = consumerEvent;
             _log = LogManager.GetLogger(typeof(ProducerOfWork));
         }
 
@@ -68,7 +70,10 @@ namespace ModelProducerConsumer.Core
             {
                 var isPlaced = _producerConsumerQueue.Enqueue(work);
                 if (isPlaced)
+                {
+                    _consumerEvent.Set();
                     break;
+                }                
                 _producerEvent.WaitOne();
             }      
         }
