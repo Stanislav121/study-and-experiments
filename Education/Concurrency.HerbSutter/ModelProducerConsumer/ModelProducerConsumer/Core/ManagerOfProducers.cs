@@ -15,14 +15,14 @@ namespace ModelProducerConsumer.Core
 
         private ConcurrentQueueLimitedSize<NumbersToSum> _producerConsumerQueue;
         private ManualResetEvent _producerEvent;
-        private ManualResetEvent _consumerEvent;
+        private ManualResetEventSlim _consumerEvent;
 
         public ManagerOfProducers()
         {
             producers = new List<ProducerOfWork>();
             _producerConsumerQueue = new ConcurrentQueueLimitedSize<NumbersToSum>(7);
             _producerEvent = new ManualResetEvent(true);
-            _consumerEvent = new ManualResetEvent(false);
+            _consumerEvent = new ManualResetEventSlim(false);
 
             consumers = new List<ConsumerOfWork>();
         }

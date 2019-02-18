@@ -8,12 +8,12 @@ namespace Functions
 {
     class HomeMadeEnumerable<T>
     {
-        public T Aggregate<T>(Func<T, T, T> func)
-        {
-            foreach (var VARIABLE in COLLECTION)
-            {
-                
-            }
-        }
+        //public T Aggregate<T>(Func<T, T, T> func)
+        //{
+        //    foreach (var VARIABLE in COLLECTION)
+        //    {
+                // TODO
+        //    }
+        //}
     }
 }

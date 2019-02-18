@@ -17,10 +17,10 @@ namespace ModelProducerConsumer.Core
         private bool _stop;
 
         private GeneratorOfNumbersToSum _realProduce;
-        private ManualResetEvent _consumerEvent;
+        private ManualResetEventSlim _consumerEvent;
         private ILog _log;
 
-        public ProducerOfWork(GeneratorOfNumbersToSum realProducer, ConcurrentQueueLimitedSize<NumbersToSum> producerConsumerQueue, ManualResetEvent producerEvent, ManualResetEvent consumerEvent)
+        public ProducerOfWork(GeneratorOfNumbersToSum realProducer, ConcurrentQueueLimitedSize<NumbersToSum> producerConsumerQueue, ManualResetEvent producerEvent, ManualResetEventSlim consumerEvent)
         {
             _producerConsumerQueue = producerConsumerQueue;
             _producerEvent = producerEvent;

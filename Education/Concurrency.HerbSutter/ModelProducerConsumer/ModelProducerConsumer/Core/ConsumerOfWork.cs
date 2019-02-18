@@ -12,13 +12,13 @@ namespace ModelProducerConsumer.Core
     {
         private ConcurrentQueueLimitedSize<NumbersToSum> _producerConsumerQueue;
         private ManualResetEvent _producerEvent;
-        private ManualResetEvent _consumerEvent;
+        private ManualResetEventSlim _consumerEvent;
         private ManagerOfProducers _managerOfProducers;
         private SummatorOfNumbers _realWorker;
 
         private ILog _log;
 
-        public ConsumerOfWork(SummatorOfNumbers realWorker, ManagerOfProducers managerOfProducers, ConcurrentQueueLimitedSize<NumbersToSum> producerConsumerQueue, ManualResetEvent producerEvent, ManualResetEvent consumerEvent)
+        public ConsumerOfWork(SummatorOfNumbers realWorker, ManagerOfProducers managerOfProducers, ConcurrentQueueLimitedSize<NumbersToSum> producerConsumerQueue, ManualResetEvent producerEvent, ManualResetEventSlim consumerEvent)
         {
             _producerConsumerQueue = producerConsumerQueue;
             _producerEvent = producerEvent;
@@ -45,8 +45,8 @@ namespace ModelProducerConsumer.Core
 
                     // TODO Very bad, use ManualResetEvent
                     //Thread.Yield();
-                    Thread.Sleep(0);
-                    //_consumerEvent.WaitOne();
+                    //Thread.Sleep(0);
+                    _consumerEvent.Wait();
                     //Thread.SpinWait(1);
                     continue;
                 }
