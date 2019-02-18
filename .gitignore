@@ -41,3 +41,8 @@ bin/
 obj/
 /Education/Concurrency.HerbSutter/ModelProducerConsumer/.vs/ModelProducerConsumer/v15/Server/sqlite3
 /DelegateAndFunctions/.vs/DelegateAndFunctions/v15/Server/sqlite3
+/Education/.vs/Education/v15/Server/sqlite3
+/Education/packages/BenchmarkDotNet.0.9.7/lib/net40/BenchmarkDotNet.xml
+/Education/packages/BenchmarkDotNet.0.9.7/lib/dnx451/BenchmarkDotNet.xml
+/Education/packages/BenchmarkDotNet.0.9.7/BenchmarkDotNet.0.9.7.nupkg
+/Education/packages/BenchmarkDotNet.0.9.7/.signature.p7s
