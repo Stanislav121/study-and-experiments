@@ -61,6 +61,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DotNet Tools", "DotNet Tool
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BenchmarkDotNetTest", "BenchmarkDotNetTest\BenchmarkDotNetTest.csproj", "{70278A09-D43A-4AC2-BF38-B05F779033CA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerilogTry", "SerilogTry\SerilogTry.csproj", "{AE21D626-6984-4177-AC06-608CE1477E11}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerformanceCountersInvestigation", "PerformanceCountersInvestigation\PerformanceCountersInvestigation.csproj", "{F1B418EA-58AA-4C6E-9E82-C78886119891}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -175,6 +179,14 @@ Global
 		{70278A09-D43A-4AC2-BF38-B05F779033CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70278A09-D43A-4AC2-BF38-B05F779033CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70278A09-D43A-4AC2-BF38-B05F779033CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE21D626-6984-4177-AC06-608CE1477E11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE21D626-6984-4177-AC06-608CE1477E11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE21D626-6984-4177-AC06-608CE1477E11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE21D626-6984-4177-AC06-608CE1477E11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1B418EA-58AA-4C6E-9E82-C78886119891}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1B418EA-58AA-4C6E-9E82-C78886119891}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1B418EA-58AA-4C6E-9E82-C78886119891}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1B418EA-58AA-4C6E-9E82-C78886119891}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
