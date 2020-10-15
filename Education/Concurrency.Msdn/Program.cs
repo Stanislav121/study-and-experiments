@@ -17,12 +17,12 @@ namespace Concurrency.Msdn
             //RunExperimentsWithInterlocked();
             //RunIncrementAccumulatorSafe();
 
-            RunIncrementUnsafe();
+            RunIncrementSafe();
 
             Console.ReadLine();
         }
 
-        private static void RunIncrementUnsafe()
+        private static void RunIncrementSafe()
         {
             var a = new ExperimentsWithInterlocked();
             var thread1 = new Thread(a.IncrementUnsafe);
