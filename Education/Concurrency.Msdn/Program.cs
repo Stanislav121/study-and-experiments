@@ -17,9 +17,18 @@ namespace Concurrency.Msdn
             //RunExperimentsWithInterlocked();
             //RunIncrementAccumulatorSafe();
 
-            RunIncrementSafe();
+            //RunIncrementSafe();
 
+            RunDeadLock();
+
+            Console.WriteLine("Press any key... ");
             Console.ReadLine();
+        }
+
+        private static void RunDeadLock()
+        {
+            var a = new DeadLock();
+            a.GoToDeadLock();
         }
 
         private static void RunIncrementSafe()

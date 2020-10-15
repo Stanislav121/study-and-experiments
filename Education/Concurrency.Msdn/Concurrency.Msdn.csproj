@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DeadLock.cs" />
     <Compile Include="ExperimentsWithInterlocked .cs" />
     <Compile Include="LockInLock.cs" />
     <Compile Include="Program.cs" />
