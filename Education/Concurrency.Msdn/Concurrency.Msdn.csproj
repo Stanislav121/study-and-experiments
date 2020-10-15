@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DeadLock.cs" />
+    <Compile Include="DeadLockByOneThread.cs" />
     <Compile Include="ExperimentsWithInterlocked .cs" />
     <Compile Include="LockInLock.cs" />
     <Compile Include="Program.cs" />
