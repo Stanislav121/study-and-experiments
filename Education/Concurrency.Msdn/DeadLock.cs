@@ -9,8 +9,6 @@ namespace Concurrency.Msdn
 {
     class DeadLock
     {
-        private int _resource;
-
         private readonly object _lock1 = new object();
         private readonly object _lock2 = new object();
 
@@ -33,7 +31,7 @@ namespace Concurrency.Msdn
                 Thread.Sleep(500);
                 lock (_lock2)
                 {
-                    Console.WriteLine("1 " + _resource);
+                    Console.WriteLine("ProcessResource1");
                 }
             }
         }
@@ -45,7 +43,7 @@ namespace Concurrency.Msdn
                 Thread.Sleep(500);
                 lock (_lock1)
                 {
-                    Console.WriteLine("2 " + _resource);
+                    Console.WriteLine("ProcessResource2");
                 }
             }
         }

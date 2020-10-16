@@ -20,15 +20,15 @@ namespace Concurrency.Msdn
             //RunIncrementSafe();
 
             //RunDeadLock();
-            RunDeadLockByOneThread();
+            RunDeadLockWithOneObject();
 
             Console.WriteLine("Press any key... ");
             Console.ReadLine();
         }
 
-        private static void RunDeadLockByOneThread()
+        private static void RunDeadLockWithOneObject()
         {
-            var a = new DeadLockByOneThread();
+            var a = new DeadLockWithOneObject();
             a.GoToDeadLock();
         }
 
