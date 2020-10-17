@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using Concurrency.Msdn.LittleThings;
+using Concurrency.Msdn.AsyncAwait;
 
 namespace Concurrency.Msdn
 {
@@ -23,10 +24,18 @@ namespace Concurrency.Msdn
             //RunDeadLock();
             //RunDeadLockWithOneObject();
 
-            RunInsideThread();
+            //RunInsideThread();
+
+            RunAsyncAwait();
 
             Console.WriteLine("Press any key... ");
             Console.ReadLine();
+        }
+
+        private static void RunAsyncAwait()
+        {
+            var a = new RunAsyncAwait();
+            a.Run();
         }
 
         private static void RunInsideThread()

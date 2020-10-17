@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AsyncAwait\SynchronousAsyncAwait.cs" />
+    <Compile Include="AsyncAwait\RunAsyncAwait.cs" />
     <Compile Include="DeadLock\DeadLock.cs" />
     <Compile Include="DeadLock\DeadLockWithOneObject.cs" />
     <Compile Include="Interlocked\ExperimentsWithInterlocked .cs" />
@@ -54,6 +56,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
