@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using Concurrency.Msdn.LittleThings;
 
 namespace Concurrency.Msdn
 {
@@ -20,10 +21,19 @@ namespace Concurrency.Msdn
             //RunIncrementSafe();
 
             //RunDeadLock();
-            RunDeadLockWithOneObject();
+            //RunDeadLockWithOneObject();
+
+            RunInsideThread();
 
             Console.WriteLine("Press any key... ");
             Console.ReadLine();
+        }
+
+        private static void RunInsideThread()
+        {
+            var a = new InsideThread();
+            a.StartThread();
+            a.RestartThread();
         }
 
         private static void RunDeadLockWithOneObject()

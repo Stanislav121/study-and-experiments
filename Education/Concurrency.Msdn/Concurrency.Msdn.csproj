@@ -44,6 +44,7 @@
     <Compile Include="DeadLock\DeadLock.cs" />
     <Compile Include="DeadLock\DeadLockWithOneObject.cs" />
     <Compile Include="Interlocked\ExperimentsWithInterlocked .cs" />
+    <Compile Include="LittleThings\InsideThread.cs" />
     <Compile Include="LittleThings\LockInLock.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
