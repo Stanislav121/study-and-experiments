@@ -10,6 +10,24 @@ namespace Concurrency.Msdn.AsyncAwait
     {
         public void Run()
         {
+            //RunSynchronousAsyncAwait();
+            RunAsynchronousAsyncAwait();
+            //RunExamples();
+        }
+
+        private void RunExamples()
+        {
+            Examples.Run();
+        }
+
+        private void RunAsynchronousAsyncAwait()
+        {
+            var a = new AsynchronousAsyncAwait();
+            a.Start();
+        }
+
+        private void RunSynchronousAsyncAwait()
+        {
             var a = new SynchronousAsyncAwait();
             a.Start();
         }

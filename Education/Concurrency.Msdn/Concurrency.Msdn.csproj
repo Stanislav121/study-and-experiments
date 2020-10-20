@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AsyncAwait\AsynchronousAsyncAwait.cs" />
+    <Compile Include="AsyncAwait\Examples.cs" />
     <Compile Include="AsyncAwait\SynchronousAsyncAwait.cs" />
     <Compile Include="AsyncAwait\RunAsyncAwait.cs" />
     <Compile Include="DeadLock\DeadLock.cs" />
