@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Concurrency.Msdn.AsyncAwait
 {
-    class Examples
+    class Teplakov
     {
         public static void Run()
         {

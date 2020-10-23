@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Concurrency.Msdn.AsyncAwait.Examples;
 
 namespace Concurrency.Msdn.AsyncAwait
 {
@@ -11,13 +12,26 @@ namespace Concurrency.Msdn.AsyncAwait
         public void Run()
         {
             //RunSynchronousAsyncAwait();
-            RunAsynchronousAsyncAwait();
-            //RunExamples();
+            //RunAsynchronousAsyncAwait();
+            //RunTeplakov();
+            //RunExamplesNetFiddle();
+            RunMyFirstStep();
         }
 
-        private void RunExamples()
+        private void RunMyFirstStep()
         {
-            Examples.Run();
+            var a = new MyFirstStep();
+            a.Run();
+        }
+
+        private void RunExamplesNetFiddle()
+        {
+            NetFiddle.Run();
+        }
+
+        private void RunTeplakov()
+        {
+            Teplakov.Run();
         }
 
         private void RunAsynchronousAsyncAwait()
