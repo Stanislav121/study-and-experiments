@@ -15,7 +15,13 @@ namespace Concurrency.Msdn.AsyncAwait
             //RunAsynchronousAsyncAwait();
             //RunTeplakov();
             //RunExamplesNetFiddle();
-            RunMyFirstStep();
+            //RunMyFirstStep();
+            RunJonSkeet();
+        }
+
+        private void RunJonSkeet()
+        {
+            JonSkeet.PrintPageLenghtAsync();
         }
 
         private void RunMyFirstStep()
