@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Concurrency.Msdn.AsyncAwait.Examples
 {
-    class JonSkeet
+    class Cascade
     {
         public static void PrintPageLenghtAsync()
         {

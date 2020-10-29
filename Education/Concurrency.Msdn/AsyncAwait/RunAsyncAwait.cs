@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Concurrency.Msdn.AsyncAwait.Examples;
+using Concurrency.Msdn.AsyncAwait.Examples.JonSkeet;
 
 namespace Concurrency.Msdn.AsyncAwait
 {
@@ -16,12 +17,17 @@ namespace Concurrency.Msdn.AsyncAwait
             //RunTeplakov();
             //RunExamplesNetFiddle();
             //RunMyFirstStep();
-            RunJonSkeet();
+            RunProcessingErrors();
         }
 
-        private void RunJonSkeet()
+        private void RunProcessingErrors()
         {
-            JonSkeet.PrintPageLenghtAsync();
+            ProcessingErrors.Foo();
+        }
+
+        private void RunCascade()
+        {
+            Cascade.PrintPageLenghtAsync( );
         }
 
         private void RunMyFirstStep()

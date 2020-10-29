@@ -43,10 +43,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AsyncAwait\AsynchronousAsyncAwait.cs" />
-    <Compile Include="AsyncAwait\Examples\JonSkeet.cs" />
+    <Compile Include="AsyncAwait\Examples\JonSkeet\Cascade.cs" />
+    <Compile Include="AsyncAwait\Examples\JonSkeet\ProcessingErrors.cs" />
     <Compile Include="AsyncAwait\Examples\MyFirstStep.cs" />
     <Compile Include="AsyncAwait\Examples\Teplakov.cs" />
     <Compile Include="AsyncAwait\Examples\NetFiddle.cs" />
+    <Compile Include="AsyncAwait\Helpers\LogHelper.cs" />
     <Compile Include="AsyncAwait\SynchronousAsyncAwait.cs" />
     <Compile Include="AsyncAwait\RunAsyncAwait.cs" />
     <Compile Include="DeadLock\DeadLock.cs" />
