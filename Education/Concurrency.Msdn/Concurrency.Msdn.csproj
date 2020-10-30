@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ParallelExtensionsExtras, Version=1.2.3.0, Culture=neutral, PublicKeyToken=665f4d61f853b5a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ParallelExtensionsExtras.1.2.0.0\lib\net40\ParallelExtensionsExtras.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http" />
@@ -46,7 +49,9 @@
     <Compile Include="AsyncAwait\Examples\JonSkeet\Cascade.cs" />
     <Compile Include="AsyncAwait\Examples\JonSkeet\ProcessingErrors.cs" />
     <Compile Include="AsyncAwait\Examples\ManyAsyncOperations\FileDownloader.cs" />
+    <Compile Include="AsyncAwait\Examples\ManyAsyncOperations\FileReader.cs" />
     <Compile Include="AsyncAwait\Examples\MyFirstStep.cs" />
+    <Compile Include="AsyncAwait\Examples\Overview.cs" />
     <Compile Include="AsyncAwait\Examples\Teplakov.cs" />
     <Compile Include="AsyncAwait\Examples\NetFiddle.cs" />
     <Compile Include="AsyncAwait\Helpers\LogHelper.cs" />
@@ -64,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

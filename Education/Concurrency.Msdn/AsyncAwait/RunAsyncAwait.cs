@@ -20,22 +20,35 @@ namespace Concurrency.Msdn.AsyncAwait
             //RunExamplesNetFiddle();
             //RunMyFirstStep();
             //RunProcessingErrors();
-            RunManyAsyncOperations();
+            //RunManyAsyncOperations();
+            //RunOverview();
+            RunFileReader();
+        }
+
+        private void RunFileReader()
+        {
+            var a = new FileReader();
+            a.Run();
+        }
+
+        private void RunOverview()
+        {
+            Overview.Run();
         }
 
         private void RunManyAsyncOperations()
         {
-            Directory.GetFiles("D:\\Downloads\\").ToList().ForEach(f => File.Delete(f));
+            Directory.GetFiles("D:\\For coding\\Downloads\\").ToList().ForEach(f => File.Delete(f));
 
             var urls = new List<string>();
             urls.Add("http://lg.hosterby.com/1MB.test");
             urls.Add("http://lg.hosterby.com/10MB.test");
-            urls.Add("http://lg.hosterby.com/1gfhgfh0MB.test");
+            urls.Add("http://lg.hosterby.com/100MB.test");
 
             var files = new List<string>();
-            files.Add("D:\\Downloads\\1MB.test");
-            files.Add("D:\\Downloads\\10MB.test");
-            files.Add("D:\\Downloads\\100MB.test");
+            files.Add("D:\\For coding\\Downloads\\1MB.test");
+            files.Add("D:\\For coding\\Downloads\\10MB.test");
+            files.Add("D:\\For coding\\Downloads\\100MB.test");
 
             FileDownloader.DownloadFiles(urls, files);
         }
