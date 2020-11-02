@@ -14,14 +14,38 @@ namespace Concurrency.Msdn.AsyncAwait.Examples
     {
         public static void Run()
         {
+
             LogHelper.Write("Run1");
-            var task = VoidAsyncMethod();
+            LogHelper.Write("SynchronizationContext " + SynchronizationContext.Current);
+            LogHelper.Write("ts= " + TaskScheduler.Current.ToString());
+            var task = DelayOperationAsync();
+            LogHelper.Write("SynchronizationContext " + SynchronizationContext.Current);
+            LogHelper.Write("ts= " + TaskScheduler.Current.ToString());
             LogHelper.Write("Run2");
             task.Wait();
+            LogHelper.Write("SynchronizationContext " + SynchronizationContext.Current);
+            LogHelper.Write("ts= " + TaskScheduler.Current.ToString());
         }
 
 
-        public static async Task VoidAsyncMethod()
+        public static async Task DelayOperationAsync() // асинхронный метод
+        {
+            LogHelper.Write("BeforeCall");
+            LogHelper.Write("SynchronizationContext " + SynchronizationContext.Current);
+            LogHelper.Write("ts= " + TaskScheduler.Current.ToString());
+            Task task = Task.Delay(1000); //асинхронная операция
+            LogHelper.Write("AfterCall");
+            LogHelper.Write("SynchronizationContext " + SynchronizationContext.Current);
+            LogHelper.Write("ts= " + TaskScheduler.Current.ToString());
+            //Thread.Sleep(200);
+            await task.ConfigureAwait(false);
+            LogHelper.Write("AfterAwait");
+            LogHelper.Write("SynchronizationContext " + SynchronizationContext.Current);
+            LogHelper.Write("ts= " + TaskScheduler.Current.ToString());
+        }
+
+
+    public static async Task VoidAsyncMethod()
         {
             LogHelper.Write("VoidAsyncMethod1");
             var cancellationSource = new CancellationTokenSource();

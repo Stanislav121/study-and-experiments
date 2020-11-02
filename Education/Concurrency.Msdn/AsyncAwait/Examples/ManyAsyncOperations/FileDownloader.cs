@@ -69,7 +69,7 @@ namespace Concurrency.Msdn.AsyncAwait.Examples.ManyAsyncOperations
             }
             catch (WebException ex)
             {
-                LogHelper.Write("I can't download file " + ex.Message + " " + ex.Response + " " + ex.Status + " Inner " + ex.InnerException);
+                LogHelper.Write("Catched. I can't download file " + ex.Message + " " + ex.Response + " " + ex.Status + " Inner " + ex.InnerException);
             }
 
             //TODO

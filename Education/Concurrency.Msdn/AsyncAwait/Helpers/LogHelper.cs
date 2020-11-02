@@ -6,7 +6,7 @@ using System.Threading;
 
 namespace Concurrency.Msdn.AsyncAwait.Helpers
 {
-    class LogHelper
+    public class LogHelper
     {
         public static void Write(string text)
         {

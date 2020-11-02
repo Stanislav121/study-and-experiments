@@ -19,6 +19,9 @@ namespace Concurrency.Msdn.AsyncAwait.Examples.ManyAsyncOperations
         public void Run()
         {
             LogHelper.Write("Run1");
+            //LogHelper.Write("Run1 " + );
+            //LogHelper.Write("Run1 " + (TaskScheduler.Current == TaskScheduler.Default));
+            LogHelper.Write("SynchronizationContext " + SynchronizationContext.Current);
             var files = new List<string>();
             files.Add("D:\\For coding\\Files for read\\100MB.test");
             files.Add("D:\\For coding\\Files for read\\100MB2.test");
