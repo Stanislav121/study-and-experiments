@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Concurrency.Msdn.AsyncAwait.Examples;
 using Concurrency.Msdn.AsyncAwait.Examples.JonSkeet;
 using Concurrency.Msdn.AsyncAwait.Examples.ManyAsyncOperations;
+using Concurrency.Msdn.AsyncAwait.Helpers;
 
 namespace Concurrency.Msdn.AsyncAwait
 {
@@ -20,8 +21,8 @@ namespace Concurrency.Msdn.AsyncAwait
             //RunExamplesNetFiddle();
             //RunMyFirstStep();
             //RunProcessingErrors();
-            //RunManyAsyncOperations();
-            RunOverview();
+            RunManyAsyncOperations();
+            //RunOverview();
             //RunFileReader();
         }
 
@@ -38,6 +39,7 @@ namespace Concurrency.Msdn.AsyncAwait
 
         private void RunManyAsyncOperations()
         {
+            TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
             Directory.GetFiles("D:\\For coding\\Downloads\\").ToList().ForEach(f => File.Delete(f));
 
             var urls = new List<string>();
@@ -51,6 +53,11 @@ namespace Concurrency.Msdn.AsyncAwait
             files.Add("D:\\For coding\\Downloads\\100MB.test");
 
             FileDownloader.DownloadFiles(urls, files);
+        }
+
+        private void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
+        {
+            LogHelper.Write("Exception");
         }
 
         private void RunProcessingErrors()

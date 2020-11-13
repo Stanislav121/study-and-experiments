@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace ValueTypeExperiment
 {
-    struct PersonStruct
+    class PersonClass
     {
         public string Name;
 
         public int Age;
 
-        public PersonStruct(string name, int age)
+        public PersonClass(string name, int age)
         {
             Name = name;
             Age = age;

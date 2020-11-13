@@ -82,7 +82,7 @@ namespace Concurrency.WpfApp
                 task = client.GetStringAsync("http://csharpindepth.com");
                 line = await task.ConfigureAwait(false);
             }
-            //throw new Exception("Hha");
+            throw new Exception("Hha");
             return line;
         }
 

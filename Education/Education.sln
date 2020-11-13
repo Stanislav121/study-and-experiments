@@ -69,6 +69,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Concurrency.PaulButcher", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Concurrency.WpfApp", "Concurrency.WpfApp\Concurrency.WpfApp.csproj", "{0EB7B2F2-4137-48DF-A261-9FB2D7B82502}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoxingUnboxing", "BoxingUnboxing\BoxingUnboxing.csproj", "{DA67B407-115A-4F64-883D-138D9733BB47}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -199,6 +201,10 @@ Global
 		{0EB7B2F2-4137-48DF-A261-9FB2D7B82502}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0EB7B2F2-4137-48DF-A261-9FB2D7B82502}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0EB7B2F2-4137-48DF-A261-9FB2D7B82502}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA67B407-115A-4F64-883D-138D9733BB47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA67B407-115A-4F64-883D-138D9733BB47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA67B407-115A-4F64-883D-138D9733BB47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA67B407-115A-4F64-883D-138D9733BB47}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
