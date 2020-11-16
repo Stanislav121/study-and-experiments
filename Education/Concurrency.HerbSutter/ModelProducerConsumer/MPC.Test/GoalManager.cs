@@ -13,13 +13,10 @@ namespace MPC.Test
         private readonly IList<Consumer> _consumers;
         private Task[] _tasks;
 
-        public AutoResetEvent ResetEvent;
-
         public GoalManager(IList<Producer> producers, IList<Consumer> consumers)
         {
             _producers = producers;
             _consumers = consumers;
-            ResetEvent = new AutoResetEvent(false);
         }
         
         public void Run()

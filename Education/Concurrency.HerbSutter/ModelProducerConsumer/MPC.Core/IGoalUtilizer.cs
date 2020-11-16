@@ -7,5 +7,7 @@ namespace MPC.Core
     public interface IGoalUtilizer
     {
         void Utilize(Goal goal);
+
+        bool? WasUtilizeSuccessful();
     }
 }

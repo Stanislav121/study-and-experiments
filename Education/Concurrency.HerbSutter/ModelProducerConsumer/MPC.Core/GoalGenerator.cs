@@ -6,11 +6,11 @@ namespace MPC.Core
 {
     public class GoalGenerator
     {
-        private static long _counter;
+        public long Counter { get; private set; }
 
         public Goal GenerateGoal()
         {
-            return new Goal(_counter++);
+            return new Goal(Counter++);
         }
     }
 }

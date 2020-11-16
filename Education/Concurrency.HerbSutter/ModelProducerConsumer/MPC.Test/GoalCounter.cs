@@ -8,7 +8,7 @@ namespace MPC.Test
     class GoalCounter : IGoalUtilizer
     {
         private readonly SortedSet<long> _processedIds;
-        private readonly Object _sync = new object();
+        private readonly object _sync = new object();
         public GoalCounter()
         {
             _processedIds = new SortedSet<long>();
@@ -21,7 +21,12 @@ namespace MPC.Test
             }            
         }
 
-        public bool IsAllGoalsProcessed()
+        public bool? WasUtilizeSuccessful()
+        {
+            return IsAllGoalsProcessed();
+        }
+
+        private bool IsAllGoalsProcessed()
         {
             var lastId = _processedIds.Max;
             var createdIds = new SortedSet<long>();
