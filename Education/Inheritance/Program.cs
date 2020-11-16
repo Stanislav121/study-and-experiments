@@ -12,14 +12,20 @@ namespace Inheritance
         {
             var a = new Inheritor();
 
-            //CallMethodA(a);
+            CallMethodA(a);
+            CallMethodI(a);
             CallMethodI1(a);
-            CallMethodI2(a);
+            CallMethodI2(a);            
 
             Console.ReadLine();
         }
 
         private static void CallMethodA(AbstractClass a)
+        {
+            a.Foo();
+        }
+
+        private static void CallMethodI(Inheritor a)
         {
             a.Foo();
         }

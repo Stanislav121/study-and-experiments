@@ -12,7 +12,7 @@ namespace MetanitQuestions
         
         static void Main(string[] args)
         {
-            //TestCompareStrings();
+            TestCompareStrings();
             //TestExceptions14();
             //Test6();
             //Question7();
@@ -101,9 +101,9 @@ namespace MetanitQuestions
             var s3 = "abccba";
 
             Console.WriteLine(s1 == s2);
-            Console.WriteLine((object)s1 == (object)s2);
+            Console.WriteLine(((object)s1) == ((object)s2));
             Console.WriteLine(s2 == s3);
-            Console.WriteLine((object)s2 == (object)s3);
+            Console.WriteLine(((object)s2) == ((object)s3));
             Console.ReadLine();
         }
 

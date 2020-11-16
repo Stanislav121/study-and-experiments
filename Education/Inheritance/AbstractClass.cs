@@ -8,6 +8,9 @@ namespace Inheritance
 {
     abstract class AbstractClass
     {
-        public abstract void Foo();
+        public void Foo()
+        {
+            Console.WriteLine("AbstractClass");
+        }
     }
 }
