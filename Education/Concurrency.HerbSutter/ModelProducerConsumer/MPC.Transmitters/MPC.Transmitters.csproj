@@ -1,13 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\MPC.Core\MPC.Core.csproj" />
-    <ProjectReference Include="..\MPC.Transmitters\MPC.Transmitters.csproj" />
   </ItemGroup>
 
 </Project>

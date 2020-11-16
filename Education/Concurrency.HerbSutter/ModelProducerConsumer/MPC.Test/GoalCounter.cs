@@ -8,13 +8,17 @@ namespace MPC.Test
     class GoalCounter : IGoalUtilizer
     {
         private readonly SortedSet<long> _processedIds;
+        private readonly Object _sync = new object();
         public GoalCounter()
         {
             _processedIds = new SortedSet<long>();
         }
         public void Utilize(Goal goal)
         {
-            _processedIds.Add(goal.Id);
+            lock (_sync)
+            {
+                _processedIds.Add(goal.Id);
+            }            
         }
 
         public bool IsAllGoalsProcessed()
