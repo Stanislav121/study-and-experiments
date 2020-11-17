@@ -21,13 +21,25 @@ namespace MPC.Test
         {
             //RunMPC(new UnsafeTransmitter());
             
-            //RunMPC(new ConcurrentQueueTransmitter(), utilizer);
-            //RunMPC(new MonitorTransmitter(), utilizer);
+            RunMPC(new ConcurrentQueueTransmitter(), utilizer);
+            RunMPC(new MonitorTransmitter(), utilizer);
             using (var transmitter = new MutexTransmitter(true))
             {
                 RunMPC(transmitter, utilizer);
             }
             using (var transmitter = new MutexTransmitter(false))
+            {
+                RunMPC(transmitter, utilizer);
+            }
+            using (var transmitter = new SemaphoreTransmitter(true))
+            {
+                RunMPC(transmitter, utilizer);
+            }
+            using (var transmitter = new SemaphoreTransmitter(false))
+            {
+                RunMPC(transmitter, utilizer);
+            }
+            using (var transmitter = new SemaphoreSlimTransmitter())
             {
                 RunMPC(transmitter, utilizer);
             }
