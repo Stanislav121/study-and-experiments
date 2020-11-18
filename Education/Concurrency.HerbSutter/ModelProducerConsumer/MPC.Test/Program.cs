@@ -11,8 +11,8 @@ namespace MPC.Test
     {
         static void Main(string[] args)
         {
-            var utilizer = new GoalCounter();
-            //var utilizer = new EmptyUtilizer();
+            //var utilizer = new GoalCounter();
+            var utilizer = new EmptyUtilizer();
             TestMPCs(utilizer);
             Console.ReadLine();
         }
@@ -20,14 +20,11 @@ namespace MPC.Test
         private static void TestMPCs(IGoalUtilizer utilizer)
         {
             //RunMPC(new UnsafeTransmitter());
-            
+
             RunMPC(new ConcurrentQueueTransmitter(), utilizer);
+
             RunMPC(new MonitorTransmitter(), utilizer);
-            using (var transmitter = new MutexTransmitter(true))
-            {
-                RunMPC(transmitter, utilizer);
-            }
-            using (var transmitter = new MutexTransmitter(false))
+            using (var transmitter = new SemaphoreSlimTransmitter())
             {
                 RunMPC(transmitter, utilizer);
             }
@@ -39,11 +36,22 @@ namespace MPC.Test
             {
                 RunMPC(transmitter, utilizer);
             }
-            using (var transmitter = new SemaphoreSlimTransmitter())
+            using (var transmitter = new MutexTransmitter(true))
             {
                 RunMPC(transmitter, utilizer);
             }
-
+            using (var transmitter = new MutexTransmitter(false))
+            {
+                RunMPC(transmitter, utilizer);
+            }
+            using (var transmitter = new AutoResetEventTransmitter())
+            {
+                RunMPC(transmitter, utilizer);
+            }
+            using (var transmitter = new EventWaitHandleAutoTransmitter())
+            {
+                RunMPC(transmitter, utilizer);
+            }
         }
 
         private static void RunMPC(ITransmitter transmitter, IGoalUtilizer utilizer)
