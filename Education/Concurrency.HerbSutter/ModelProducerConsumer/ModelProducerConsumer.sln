@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPC.Test", "MPC.Test\MPC.Te
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPC.Core", "MPC.Core\MPC.Core.csproj", "{FE9077CD-9954-4F4F-8D9E-F17E9CF39077}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MPC.Transmitters", "MPC.Transmitters\MPC.Transmitters.csproj", "{0ED8AA73-03EA-437B-88D8-F5CD686F2756}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPC.Transmitters", "MPC.Transmitters\MPC.Transmitters.csproj", "{0ED8AA73-03EA-437B-88D8-F5CD686F2756}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MPC.WikiProcessor", "MPC.WikiProcessor\MPC.WikiProcessor.csproj", "{4F8DA9C2-293E-47DC-B521-B08426A0E23B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{0ED8AA73-03EA-437B-88D8-F5CD686F2756}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0ED8AA73-03EA-437B-88D8-F5CD686F2756}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0ED8AA73-03EA-437B-88D8-F5CD686F2756}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F8DA9C2-293E-47DC-B521-B08426A0E23B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F8DA9C2-293E-47DC-B521-B08426A0E23B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F8DA9C2-293E-47DC-B521-B08426A0E23B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F8DA9C2-293E-47DC-B521-B08426A0E23B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
