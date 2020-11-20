@@ -9,14 +9,14 @@ namespace MPC.WikiProcessor
 {
     class WikiProcessorParallel
     {
-        public Tuple<string, long, TimeSpan> ProcessMostFrequentWord(string filePath, long pagesToProcess, bool runSafely, int nConsumers)
+        public Tuple<string, long, TimeSpan> ProcessMostFrequentWord(string filePath, long pagesToProcess, bool runSafely, int nConsumers, bool byTasks)
         {
             Stopwatch watch = new Stopwatch();
             watch.Start();
             var transmitter = new BlockingCollection<string>();
             var producer = new PageProducer(filePath, pagesToProcess, transmitter);
 
-            var results = WorkByTasks(transmitter, producer, runSafely, nConsumers);
+            var results = byTasks ? WorkByTasks(transmitter, producer, runSafely, nConsumers) : WorkByParallel(transmitter, producer, runSafely, nConsumers);
 
             var generalWordsCount = new Dictionary<string, long>(results[0]);
             for(int i = 1; i < nConsumers; i++ )
@@ -53,36 +53,6 @@ namespace MPC.WikiProcessor
             for (int i = 0; i < nConsumers; i++)
                 results[i] = tasks[i].Result;
             return results;
-        }
-
-        public Tuple<string, long, TimeSpan> ProcessMostFrequentWordParallel(string filePath, long pagesToProcess, bool runSafely, int nConsumers)
-        {
-            Stopwatch watch = new Stopwatch();
-            watch.Start();
-            var transmitter = new BlockingCollection<string>();
-            var producer = new PageProducer(filePath, pagesToProcess, transmitter);
-
-            var results = WorkByParallel(transmitter, producer, runSafely, nConsumers);
-
-            var generalWordsCount = new Dictionary<string, long>(results[0]);
-            for (int i = 1; i < nConsumers; i++)
-                foreach (var word in results[i])
-                {
-                    if (generalWordsCount.ContainsKey(word.Key))
-                        generalWordsCount[word.Key] += word.Value;
-                    else
-                        generalWordsCount.Add(word.Key, word.Value);
-                }
-
-            var biggestCount = generalWordsCount.Values.Max();
-            string mostFrequentWord = string.Empty;
-            foreach (var wordCount in generalWordsCount)
-            {
-                if (wordCount.Value == biggestCount)
-                    mostFrequentWord = wordCount.Key;
-            }
-
-            return Tuple.Create(mostFrequentWord, biggestCount, watch.Elapsed);
         }
 
         private Dictionary<string, long>[] WorkByParallel(BlockingCollection<string> transmitter, PageProducer producer, bool runSafely, int nConsumers)

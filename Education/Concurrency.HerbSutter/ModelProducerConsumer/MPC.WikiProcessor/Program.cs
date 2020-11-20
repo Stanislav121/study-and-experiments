@@ -23,34 +23,33 @@ namespace MPC.WikiProcessor
         {
             var filePath = @"D:\For coding\enwiki-20201020-pages-articles-multistream1.xml-p1p41242";
             var pagesToProcess = 3000;
+            var results = new List<Tuple<string, long, TimeSpan>>();
 
             var a = new WikiProcessorSequential();
             var resultSequential = a.ProcessMostFrequentWord(filePath, pagesToProcess);
             Console.WriteLine($"    {resultSequential.Item1} {resultSequential.Item2} {resultSequential.Item3}");
 
-            var results = new List<Tuple<string, long, TimeSpan>>();
-            var b = new WikiProcessorParallel();
-            var resultSequentialB = b.ProcessMostFrequentWord(filePath, pagesToProcess, true, 18);
-            results.Add(resultSequentialB);
-            Console.WriteLine($"S   {resultSequentialB.Item1} {resultSequentialB.Item2} {resultSequentialB.Item3}");
-
-            var c = new WikiProcessorParallel();
-            var resultSequentialC = c.ProcessMostFrequentWord(filePath, pagesToProcess, true, 6);
-            results.Add(resultSequentialC);
-            Console.WriteLine($"S   {resultSequentialC.Item1} {resultSequentialC.Item2} {resultSequentialC.Item3}");
-
-            var d = new WikiProcessorParallel();
-            var resultSequentialD = d.ProcessMostFrequentWordParallel(filePath, pagesToProcess, true, 6);
-            results.Add(resultSequentialD);
-            Console.WriteLine($"S   {resultSequentialD.Item1} {resultSequentialD.Item2} {resultSequentialD.Item3}");
+            RunWork(filePath, pagesToProcess, true, 18, true, results);
+            RunWork(filePath, pagesToProcess, true, 6, true, results);
+            RunWork(filePath, pagesToProcess, true, 6, false, results);
+            RunWork(filePath, pagesToProcess, true, 18, false, results);
 
 
             results.ForEach(p => Console.WriteLine($"{resultSequential.Item3 / p.Item3}"));
-
-            Console.WriteLine((resultSequential.Item2 == resultSequentialD.Item2) );
+            Console.WriteLine(results.All(p => p.Item1 == resultSequential.Item1 && p.Item2 == resultSequential.Item2));
+                                      
+            //Console.WriteLine((resultSequential.Item2 == resultSequentialD.Item2) );
 
             //Console.WriteLine((resultSequential.Item2 == resultSequentialB.Item2) && (resultSequential.Item2 == resultSequentialC.Item2));
 
+        }
+
+        private static void RunWork(string filePath, long pagesToProcess, bool runSafely, int nConsumers, bool byTasks, List<Tuple<string, long, TimeSpan>> results)
+        {
+            var d = new WikiProcessorParallel();
+            var resultSequentialD = d.ProcessMostFrequentWord(filePath, pagesToProcess, runSafely, nConsumers, byTasks);
+            results.Add(resultSequentialD);
+            Console.WriteLine($"S   {resultSequentialD.Item1} {resultSequentialD.Item2} {resultSequentialD.Item3}");
         }
 
         private static bool IsEqueal(IList<string> a, ConcurrentBag<string> b)
