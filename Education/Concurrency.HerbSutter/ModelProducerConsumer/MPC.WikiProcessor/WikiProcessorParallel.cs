@@ -9,22 +9,24 @@ namespace MPC.WikiProcessor
 {
     class WikiProcessorParallel
     {
-        public Tuple<string, long, TimeSpan> ProcessMostFrequentWord(string filePath, long pagesToProcess)
+        public Tuple<string, long, TimeSpan> ProcessMostFrequentWord(string filePath, long pagesToProcess, bool runSafely, int nConsumers)
         {
             Stopwatch watch = new Stopwatch();
             watch.Start();
-            var transmitter = new BlockingCollection<string>(1000);
+            var transmitter = new BlockingCollection<string>();
             var producer = new PageProducer(filePath, pagesToProcess, transmitter);
-            var generalWordsCount = new ConcurrentDictionary<string, long>();
 
-            var nConsumers = 4;
-            var tasks = new Task[nConsumers];
-            for(int i = 0; i < nConsumers; i++)
-                tasks[i] = (Task.Run((new PageConsumer(transmitter, generalWordsCount)).Run));
+            var results = WorkByTasks(transmitter, producer, runSafely, nConsumers);
 
-            Task.Run(producer.Run);
-
-            Task.WaitAll(tasks);
+            var generalWordsCount = new Dictionary<string, long>(results[0]);
+            for(int i = 1; i < nConsumers; i++ )
+            foreach (var word in results[i])
+            {
+                if (generalWordsCount.ContainsKey(word.Key))
+                    generalWordsCount[word.Key] += word.Value;
+                else
+                    generalWordsCount.Add(word.Key, word.Value);
+            }
 
             var biggestCount = generalWordsCount.Values.Max();
             string mostFrequentWord = string.Empty;
@@ -35,6 +37,63 @@ namespace MPC.WikiProcessor
             }
 
             return Tuple.Create(mostFrequentWord, biggestCount, watch.Elapsed);
+        }
+
+        private Dictionary<string, long>[] WorkByTasks(BlockingCollection<string> transmitter, PageProducer producer, bool runSafely, int nConsumers)
+        {
+            var tasks = new Task<Dictionary<string, long>>[nConsumers];
+            for (int i = 0; i < nConsumers; i++)
+                tasks[i] = Task.Factory.StartNew((b) => { return new PageConsumer(transmitter).Run(runSafely); }, runSafely);
+
+            Task.Run(producer.Run);
+
+            Task.WaitAll(tasks);
+
+            var results = new Dictionary<string, long>[nConsumers];
+            for (int i = 0; i < nConsumers; i++)
+                results[i] = tasks[i].Result;
+            return results;
+        }
+
+        public Tuple<string, long, TimeSpan> ProcessMostFrequentWordParallel(string filePath, long pagesToProcess, bool runSafely, int nConsumers)
+        {
+            Stopwatch watch = new Stopwatch();
+            watch.Start();
+            var transmitter = new BlockingCollection<string>();
+            var producer = new PageProducer(filePath, pagesToProcess, transmitter);
+
+            var results = WorkByParallel(transmitter, producer, runSafely, nConsumers);
+
+            var generalWordsCount = new Dictionary<string, long>(results[0]);
+            for (int i = 1; i < nConsumers; i++)
+                foreach (var word in results[i])
+                {
+                    if (generalWordsCount.ContainsKey(word.Key))
+                        generalWordsCount[word.Key] += word.Value;
+                    else
+                        generalWordsCount.Add(word.Key, word.Value);
+                }
+
+            var biggestCount = generalWordsCount.Values.Max();
+            string mostFrequentWord = string.Empty;
+            foreach (var wordCount in generalWordsCount)
+            {
+                if (wordCount.Value == biggestCount)
+                    mostFrequentWord = wordCount.Key;
+            }
+
+            return Tuple.Create(mostFrequentWord, biggestCount, watch.Elapsed);
+        }
+
+        private Dictionary<string, long>[] WorkByParallel(BlockingCollection<string> transmitter, PageProducer producer, bool runSafely, int nConsumers)
+        {
+            Task.Run(producer.Run);
+
+            var results = new Dictionary<string, long>[nConsumers];
+            Parallel.For(0, results.Length,
+              i => results[i] = new PageConsumer(transmitter).Run(runSafely));
+
+            return results;
         }
     }
 }

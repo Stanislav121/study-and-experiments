@@ -1,4 +1,5 @@
-﻿using System.Collections.Concurrent;
+﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 
 
@@ -7,25 +8,46 @@ namespace MPC.WikiProcessor
     class PageConsumer
     {
         private readonly BlockingCollection<string> _transmitter;
-        private readonly Dictionary<string, long> _wordsCount = new Dictionary<string, long>();
-        private readonly ConcurrentDictionary<string, long> _generalWordsCount;
+        private readonly Dictionary<string, long> _generalWordsCount;
 
-        public PageConsumer(BlockingCollection<string> transmitter, ConcurrentDictionary<string, long> generalWordsCount)
+        public PageConsumer(BlockingCollection<string> transmitter)
         {
             _transmitter = transmitter;
-            _generalWordsCount = generalWordsCount;
+            _generalWordsCount = new Dictionary<string, long>();
         }
 
-        public void Run()
+        public Dictionary<string, long> Run(bool runSafely)
+        {
+            if(runSafely)
+                RunSafely();
+            else
+                RunUnsafely();
+            return _generalWordsCount;
+        }
+
+        private void RunUnsafely()
         {
             while (!_transmitter.IsCompleted)
             {
-                var words = _transmitter.Take().Split(' ');
+                var line = _transmitter.Take();
+                var words = line.Split(' ');
                 foreach (var word in words)
                 {
                     CountWordsInPage(word);
                 }
             }
+        }
+
+        private void RunSafely()
+        {
+            try
+            {
+                RunUnsafely();
+            }
+            catch (InvalidOperationException ex)
+            {
+                //Console.WriteLine($"CollectionExtensions is empry and close {ex.Message}");
+            }            
         }
 
         private void CountWordsInPage(string word)
@@ -36,7 +58,7 @@ namespace MPC.WikiProcessor
             }
             else
             {
-                _generalWordsCount.TryAdd(word, 1);
+                _generalWordsCount.Add(word, 1);
             }
         }
 

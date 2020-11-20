@@ -10,6 +10,7 @@ namespace MPC.WikiProcessor
     class WikiProcessorSequential
     {
         private readonly Dictionary<string, long> _wordsCount = new Dictionary<string, long>();
+        public readonly IList<string> Lines = new List<string>();
 
         private void CountWordsInPage(string word)
         {
@@ -37,7 +38,9 @@ namespace MPC.WikiProcessor
                     switch (reader.NodeType)
                     {
                         case XmlNodeType.Text:
-                            var words = reader.Value.Split(' ');
+                            var line = reader.Value;
+                            Lines.Add(line);
+                            var words = line.Split(' ');
                             foreach (var word in words)
                             {
                                 CountWordsInPage(word);
