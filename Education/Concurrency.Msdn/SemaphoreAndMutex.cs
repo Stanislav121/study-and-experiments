@@ -15,7 +15,7 @@ namespace Concurrency.Msdn
         {
             ThreadPool.QueueUserWorkItem(ThreadProc);
             ThreadPool.QueueUserWorkItem(ThreadProc, "Abc");
-            ThreadPool.QueueUserWorkItem();
+            ThreadPool.QueueUserWorkItem((o) => Console.WriteLine("ThreadProc in thread pool, ob {0}", o), "delegate");
 
             _mutex = new Mutex();
             _semaphore = new Semaphore(1, 1);
@@ -36,7 +36,7 @@ namespace Concurrency.Msdn
 
         private static void ThreadProc(object state)
         {
-            Console.WriteLine("ThreadProc in thread pool, ob ", state);
+            Console.WriteLine("ThreadProc in thread pool, ob {0}", state);
         }
     }
 }
