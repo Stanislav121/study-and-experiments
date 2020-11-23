@@ -6,8 +6,12 @@ namespace BoxingUnboxing
     {
         static void Main(string[] args)
         {
-            Overview();
-            ValueInterface.Run();
+            //Overview();
+            //ValueInterface.Run();
+            var a = new Teplakov();
+            //a.Run1();
+            a.Run2();
+            Console.Read();
         }
 
         private static void Overview()

@@ -11,6 +11,7 @@ namespace BoxingUnboxing
             int a = 21;
             Foo(a);
             Boo(a);
+            Soo(ref a);
             Poo(a);
         }
 
@@ -24,9 +25,14 @@ namespace BoxingUnboxing
             Console.WriteLine(a);
         }
 
+        private static void Soo(ref int a)
+        {
+            Console.WriteLine(a);
+        }
+
         private static void Poo<T>(T value) where T : IComparable<T>
         {
-            Console.WriteLine(value);
+            //Console.WriteLine(value.);
         }
     }
 }
