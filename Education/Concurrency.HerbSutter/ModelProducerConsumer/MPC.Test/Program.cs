@@ -11,16 +11,44 @@ namespace MPC.Test
     {
         static void Main(string[] args)
         {
-            //var utilizer = new GoalCounter();
-            var utilizer = new EmptyUtilizer();
+            var utilizer = new GoalCounter();
+            //var utilizer = new EmptyUtilizer();
             TestMPCs(utilizer);
+
+            //TestConcurrentQueueDIY();
             Console.ReadLine();
+        }
+
+        private static void TestConcurrentQueueDIY()
+        {
+            var queue = new ConcurrentQueueDIY<int>();
+
+            int a;
+            queue.Enqueue(1);
+            queue.Enqueue(2);
+            //queue.TryDequeue(out a);
+            queue.Enqueue(3);
+            queue.Enqueue(4);
+            queue.Enqueue(5);
+            queue.Enqueue(6);
+            queue.Enqueue(7);
+
+            while (true)
+            {
+                int item;
+                var isEmpty = !queue.TryDequeue(out item);
+                if (isEmpty)
+                    break;
+                Console.WriteLine(item);
+            }           
+            
         }
 
         private static void TestMPCs(IGoalUtilizer utilizer)
         {
             //RunMPC(new UnsafeTransmitter());
-
+            RunMPC(new ConcurrentQueueDIYTransmitter(), utilizer);
+            RunMPC(new InterlockedTransmitter(), utilizer);
             RunMPC(new ConcurrentQueueTransmitter(), utilizer);
 
             RunMPC(new MonitorTransmitter(), utilizer);
