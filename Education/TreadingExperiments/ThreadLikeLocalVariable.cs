@@ -21,7 +21,7 @@ namespace TreadingExperiments
             var count = 0;
             while (count < 10)
             {
-                //Console.WriteLine("I am alive");
+                Console.WriteLine("I am alive");
                 //Console.Beep(350, 250);
                 count++;
                 Thread.Sleep(1000);

@@ -26,9 +26,9 @@ namespace Concurrency.Msdn
 
             //RunInsideThread();
 
-            //RunAsyncAwait();
+            RunAsyncAwait();
 
-            RunSemaphoreAndMutex();
+            //RunSemaphoreAndMutex();
 
             Console.WriteLine("Press any key... ");
             Console.ReadLine();

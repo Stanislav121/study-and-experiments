@@ -28,7 +28,7 @@ namespace TreadingExperiments
 
         private void StartConnection()
         {
-            connection.Reset();
+            connection.Set();
         }
     }
 }
