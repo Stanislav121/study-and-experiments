@@ -70,7 +70,7 @@ namespace Concurrency.WpfApp
         {
             SynchronizationContext a = SynchronizationContext.Current;
             LogHelper.Write(a.ToString());
-            Label1.Content = PressMe().Result.Length;
+               Label1.Content = PressMe().Result.Length;
         }
 
         private async Task<string> PressMe()
