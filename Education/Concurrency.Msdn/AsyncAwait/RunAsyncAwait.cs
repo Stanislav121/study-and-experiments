@@ -44,7 +44,7 @@ namespace Concurrency.Msdn.AsyncAwait
 
             var urls = new List<string>();
             urls.Add("http://lg.hosterby.com/1MBdsfdsf.test");
-            urls.Add("http://lg.hosterby.com/10MBfcgfgc.test");
+            urls.Add("http://lg.hosterby.com/10MB.test");
             urls.Add("http://lg.hosterby.com/100MB.test");
 
             var files = new List<string>();

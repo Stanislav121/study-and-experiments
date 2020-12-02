@@ -54,7 +54,8 @@ namespace Concurrency.Msdn.AsyncAwait.Examples.ManyAsyncOperations
             var ct = cts.Token;
             for (int i = 0; i < urls.Count; i++)
             {
-                var task = urlsInner[i].Item2.DownloadFileTaskAsync(urlsInner[i].Item1, fileNames[i]);
+                //Task task = new Task(Foo);
+                var task =  urlsInner[i].Item2.DownloadFileTaskAsync(urlsInner[i].Item1, fileNames[i]);
                 task.ContinueWith((t, fileName) => { LogHelper.Write(fileName + " is downloaded"); Interlocked.Increment(ref downloadedFiles); }, fileNames[i],
                     ct, TaskContinuationOptions.OnlyOnRanToCompletion, lcts);
                 task.ContinueWith((t, fileName) => { LogHelper.Write("I can't download file " + fileName); }, fileNames[i],
@@ -65,18 +66,25 @@ namespace Concurrency.Msdn.AsyncAwait.Examples.ManyAsyncOperations
 
             try
             {
-                await Task.WhenAll(tasks);
+                await Task.WhenAll(tasks);                
+                LogHelper.Write("DownloadFilesAsync. End file downloading");
             }
             catch (WebException ex)
             {
                 LogHelper.Write("Catched. I can't download file " + ex.Message + " " + ex.Response + " " + ex.Status + " Inner " + ex.InnerException);
             }
+            downloadedFiles = tasks.Count(t => t.IsCompleted);
 
             //TODO
             urlsInner.ToList().ForEach(s => s.Item2.Dispose());
             //webClient.Dispose();
 
             return downloadedFiles;
-        } 
+        }
+
+        private static void Foo()
+        {
+            Console.WriteLine("Start task");
+        }
     }
 }
