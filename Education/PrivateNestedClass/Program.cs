@@ -12,6 +12,10 @@ namespace PrivateNestedClass
         {
             var a = new OpenClass();
             a.UpdateInnerClass();
+
+            //var innerClass1 = new OpenClass.NestedPrivateClass();
+            //var innerClass2 = new OpenClass.NestedClass();
+            var innerClass3 = new OpenClass.NestedPublicClass();
             Console.WriteLine(a);
             Console.ReadLine();
         }

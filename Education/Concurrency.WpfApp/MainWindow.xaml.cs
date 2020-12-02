@@ -104,7 +104,7 @@ namespace Concurrency.WpfApp
             SynchronizationContext a = SynchronizationContext.Current;
             LogHelper.Write("sc= " + a.ToString());
             LogHelper.Write("ts= " + TaskScheduler.Current.ToString());
-            var task = Task.Delay(1000);
+            var task = Task.Delay(10000);
             a = SynchronizationContext.Current;
             LogHelper.Write("sc= " + a.ToString());
             LogHelper.Write("ts= " + TaskScheduler.Current.ToString());

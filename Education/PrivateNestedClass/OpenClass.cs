@@ -8,11 +8,11 @@ namespace PrivateNestedClass
 {
     public class OpenClass
     {
-        private NestedClass InnerClass;
+        private NestedPrivateClass InnerClass;
 
         public OpenClass()
         {
-            InnerClass = new NestedClass();
+            InnerClass = new NestedPrivateClass();
         }
 
         public void UpdateInnerClass()
@@ -27,13 +27,41 @@ namespace PrivateNestedClass
             return string.Concat(InnerClass.id, InnerClass.Id);
         }
 
-        private class NestedClass
+        private class NestedPrivateClass
+        {
+            private int _id;
+            internal int id;
+            public int Id;
+
+            public NestedPrivateClass()
+            {
+                _id = 1;
+                id = 2;
+                Id = 3;
+            }
+        }
+
+        class NestedClass
         {
             private int _id;
             internal int id;
             public int Id;
 
             public NestedClass()
+            {
+                _id = 1;
+                id = 2;
+                Id = 3;
+            }
+        }
+
+        public class NestedPublicClass
+        {
+            private int _id;
+            internal int id;
+            public int Id;
+
+            public NestedPublicClass()
             {
                 _id = 1;
                 id = 2;
