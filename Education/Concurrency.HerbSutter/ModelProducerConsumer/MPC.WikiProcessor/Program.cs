@@ -22,17 +22,18 @@ namespace MPC.WikiProcessor
         private static void RunWikiWordsProcess()
         {
             var filePath = @"D:\For coding\enwiki-20201020-pages-articles-multistream1.xml-p1p41242";
-            var pagesToProcess = 3000;
+            var pagesToProcess = 300000;
             var results = new List<Tuple<string, long, TimeSpan>>();
 
             var a = new WikiProcessorSequential();
             var resultSequential = a.ProcessMostFrequentWord(filePath, pagesToProcess);
             Console.WriteLine($"    {resultSequential.Item1} {resultSequential.Item2} {resultSequential.Item3}");
 
-            RunWork(filePath, pagesToProcess, true, 18, true, results);
-            RunWork(filePath, pagesToProcess, true, 6, true, results);
-            RunWork(filePath, pagesToProcess, true, 6, false, results);
-            RunWork(filePath, pagesToProcess, true, 18, false, results);
+            var runWithSpin = false;
+            RunWork(filePath, pagesToProcess, true, runWithSpin, 18, true, results);
+            RunWork(filePath, pagesToProcess, true, runWithSpin, 6, true, results);
+            RunWork(filePath, pagesToProcess, true, runWithSpin, 6, false, results);
+            RunWork(filePath, pagesToProcess, true, runWithSpin, 18, false, results);
 
 
             results.ForEach(p => Console.WriteLine($"{resultSequential.Item3 / p.Item3}"));
@@ -44,10 +45,10 @@ namespace MPC.WikiProcessor
 
         }
 
-        private static void RunWork(string filePath, long pagesToProcess, bool runSafely, int nConsumers, bool byTasks, List<Tuple<string, long, TimeSpan>> results)
+        private static void RunWork(string filePath, long pagesToProcess, bool runSafely, bool runWithSpin, int nConsumers, bool byTasks, List<Tuple<string, long, TimeSpan>> results)
         {
             var d = new WikiProcessorParallel();
-            var resultSequentialD = d.ProcessMostFrequentWord(filePath, pagesToProcess, runSafely, nConsumers, byTasks);
+            var resultSequentialD = d.ProcessMostFrequentWord(filePath, pagesToProcess, runSafely, runWithSpin, nConsumers, byTasks);
             results.Add(resultSequentialD);
             Console.WriteLine($"S   {resultSequentialD.Item1} {resultSequentialD.Item2} {resultSequentialD.Item3}");
         }

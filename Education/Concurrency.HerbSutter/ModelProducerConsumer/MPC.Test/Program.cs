@@ -57,6 +57,7 @@ namespace MPC.Test
             {
                 RunMPC(transmitter, utilizer);
             }
+            RunMPC(new InterlockedTransmitter(), utilizer);
             using (var transmitter = new SemaphoreTransmitter(true))
             {
                 RunMPC(transmitter, utilizer);
@@ -64,8 +65,7 @@ namespace MPC.Test
             using (var transmitter = new SemaphoreTransmitter(false))
             {
                 RunMPC(transmitter, utilizer);
-            }
-            RunMPC(new InterlockedTransmitter(), utilizer);
+            }            
             using (var transmitter = new MutexTransmitter(true))
             {
                 RunMPC(transmitter, utilizer);

@@ -16,8 +16,13 @@ namespace MPC.WikiProcessor
             _generalWordsCount = new Dictionary<string, long>();
         }
 
-        public Dictionary<string, long> Run(bool runSafely)
+        public Dictionary<string, long> Run(bool runSafely, bool runWithSpin)
         {
+            if (runWithSpin)
+            {
+                Run();
+                return _generalWordsCount;
+            }
             if(runSafely)
                 RunSafely();
             else
@@ -30,6 +35,22 @@ namespace MPC.WikiProcessor
             while (!_transmitter.IsCompleted)
             {
                 var line = _transmitter.Take();
+                var words = line.Split(' ');
+                foreach (var word in words)
+                {
+                    CountWordsInPage(word);
+                }
+            }
+        }
+
+        private void Run()
+        {
+            //Very long
+            string line;
+            while (!_transmitter.IsCompleted)
+            {
+                if (!_transmitter.TryTake(out line))
+                    continue;
                 var words = line.Split(' ');
                 foreach (var word in words)
                 {
