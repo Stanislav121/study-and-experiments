@@ -11,11 +11,12 @@ namespace MPC.Test
     {
         static void Main(string[] args)
         {
-            var utilizer = new GoalCounter();
-            //var utilizer = new EmptyUtilizer();
+            //var utilizer = new GoalCounter();
+            var utilizer = new EmptyUtilizer();
             TestMPCs(utilizer);
 
             //TestConcurrentQueueDIY();
+            Console.WriteLine("End");
             Console.ReadLine();
         }
 
@@ -47,8 +48,8 @@ namespace MPC.Test
         private static void TestMPCs(IGoalUtilizer utilizer)
         {
             //RunMPC(new UnsafeTransmitter());
-            RunMPC(new ConcurrentQueueDIYTransmitter(), utilizer);
-            RunMPC(new InterlockedTransmitter(), utilizer);
+            //RunMPC(new ConcurrentQueueDIYTransmitter(), utilizer);
+            
             RunMPC(new ConcurrentQueueTransmitter(), utilizer);
 
             RunMPC(new MonitorTransmitter(), utilizer);
@@ -64,6 +65,7 @@ namespace MPC.Test
             {
                 RunMPC(transmitter, utilizer);
             }
+            RunMPC(new InterlockedTransmitter(), utilizer);
             using (var transmitter = new MutexTransmitter(true))
             {
                 RunMPC(transmitter, utilizer);
@@ -96,7 +98,7 @@ namespace MPC.Test
             stopWatchBody.Start();
 
             manager.Run();
-            Thread.Sleep(500);//22 000 000
+            Thread.Sleep(5000);//22 000 000
             manager.Stop();
             
             stopWatchBody.Stop();            
