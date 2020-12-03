@@ -86,7 +86,7 @@ namespace Concurrency.WpfApp
             return line;
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private async void Button_Click_1(object sender, RoutedEventArgs e)
         {
             SynchronizationContext a = SynchronizationContext.Current;
             LogHelper.Write("sc= " + a.ToString());
@@ -95,7 +95,7 @@ namespace Concurrency.WpfApp
             a = SynchronizationContext.Current;
             LogHelper.Write("sc= " + a.ToString());
             LogHelper.Write("ts= " + TaskScheduler.Current.ToString());
-            task.Wait();
+            await task;
             Label1.Content = "No Deadlock";
         }
 

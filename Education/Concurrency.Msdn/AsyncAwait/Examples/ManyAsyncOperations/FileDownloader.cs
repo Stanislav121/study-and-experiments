@@ -54,15 +54,20 @@ namespace Concurrency.Msdn.AsyncAwait.Examples.ManyAsyncOperations
             var ct = cts.Token;
             for (int i = 0; i < urls.Count; i++)
             {
-                //Task task = new Task(Foo);
-                var task =  urlsInner[i].Item2.DownloadFileTaskAsync(urlsInner[i].Item1, fileNames[i]);
-                task.ContinueWith((t, fileName) => { LogHelper.Write(fileName + " is downloaded"); Interlocked.Increment(ref downloadedFiles); }, fileNames[i],
+                var tempI = i;
+                //var task = task0.ContinueWith((t) => Foo2());
+                var task = DownloadFileTaskAsync(urlsInner[tempI].Item2, urlsInner[tempI].Item1, fileNames[tempI]);
+                //var task = task0.ContinueWith(t => urlsInner[tempI].Item2.DownloadFileTaskAsync(urlsInner[tempI].Item1, fileNames[tempI]));
+                //var task = urlsInner[tempI].Item2.DownloadFileTaskAsync(urlsInner[tempI].Item1, fileNames[tempI]);
+                task.ContinueWith((t, fileName) => { LogHelper.Write(fileName + " is downloaded"); Interlocked.Increment(ref downloadedFiles); }, fileNames[tempI],
                     ct, TaskContinuationOptions.OnlyOnRanToCompletion, lcts);
-                task.ContinueWith((t, fileName) => { LogHelper.Write("I can't download file " + fileName); }, fileNames[i],
+                task.ContinueWith((t, fileName) => { LogHelper.Write("I can't download file " + fileName); }, fileNames[tempI],
                     ct, TaskContinuationOptions.OnlyOnFaulted, lcts);
+
                 tasks.Add(task);
             }
             LogHelper.Write("DownloadFilesAsync. Start file downloading");
+            //tasks.ForEach(t => t.Start());
 
             try
             {
@@ -82,9 +87,22 @@ namespace Concurrency.Msdn.AsyncAwait.Examples.ManyAsyncOperations
             return downloadedFiles;
         }
 
+        private static Task DownloadFileTaskAsync(WebClient webClient, string url, string fileName)
+        {
+            Foo();
+            return webClient.DownloadFileTaskAsync(url, fileName);
+        }
+
         private static void Foo()
         {
             Console.WriteLine("Start task");
         }
+
+        private static void Foo2()
+        {
+            Thread.Sleep(7000);
+            Console.WriteLine(nameof(Foo2));
+        }
+
     }
 }

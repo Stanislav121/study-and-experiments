@@ -21,9 +21,22 @@ namespace Concurrency.Msdn.AsyncAwait
             //RunExamplesNetFiddle();
             //RunMyFirstStep();
             //RunProcessingErrors();
-            RunManyAsyncOperations();
+
             //RunOverview();
             //RunFileReader();
+            RunManyAsyncOperations();
+            //RunWrapSyncInAsync();
+            //RunContinueWith();
+        }
+
+        private void RunContinueWith()
+        {
+            ContinueWith.Run();
+        }
+
+        private void RunWrapSyncInAsync()
+        {
+            WrapSyncInAsync.Run();
         }
 
         private void RunFileReader()
@@ -57,7 +70,7 @@ namespace Concurrency.Msdn.AsyncAwait
 
         private void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
         {
-            LogHelper.Write("Exception");
+            LogHelper.Write("TaskScheduler_UnobservedTaskException");
         }
 
         private void RunProcessingErrors()
