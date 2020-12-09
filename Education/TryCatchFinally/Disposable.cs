@@ -13,7 +13,7 @@ namespace TryCatchFinally
         {
             File.Delete("Disposable.txt");
             var file = new StreamWriter("Disposable.txt");
-            file.WriteLine("Dispose");
+            file.WriteLine($"Dispose {DateTime.Now}");
             file.Flush();
             //Console.WriteLine("Dispose");
         }

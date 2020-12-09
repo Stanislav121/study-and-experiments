@@ -11,10 +11,19 @@ namespace TryCatchFinally
     {
         static void Main(string[] args)
         {
-            IsNotCallInUsing();
+            try
+            {
+                var a = new FinnalyWithOutOfMemory();
+                a.Run();
+            }
+            catch
+            {
+                Console.WriteLine("Error");
+            }
+            //IsNotCallInUsing();
             //TryCatchFinnalyException();
             //TestFinnally();            
-            
+
             Console.WriteLine("Press any key to exit");
             Console.ReadLine();
         }

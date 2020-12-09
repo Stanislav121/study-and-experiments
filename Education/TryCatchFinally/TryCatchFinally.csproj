@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Disposable.cs" />
     <Compile Include="DisposableCorrapted.cs" />
+    <Compile Include="FinnalyWithOutOfMemory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
