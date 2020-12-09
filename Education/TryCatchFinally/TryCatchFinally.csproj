@@ -43,9 +43,11 @@
   <ItemGroup>
     <Compile Include="Disposable.cs" />
     <Compile Include="DisposableCorrapted.cs" />
+    <Compile Include="ExceptionsInConcurrency.cs" />
     <Compile Include="FinnalyWithOutOfMemory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TryExceptions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
