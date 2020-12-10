@@ -11,8 +11,10 @@ namespace BoxingUnboxing
             var a = new Teplakov();
             //a.Run1();
 
-            var disposable = new DisposableSample();
-            disposable.Run2();
+            //var disposable = new DisposableSample();
+            //disposable.Run2();
+
+            StructsInListOfInterface.Run();
             Console.Read();
         }
 
