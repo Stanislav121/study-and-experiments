@@ -34,23 +34,27 @@ namespace TryCatchFinally
             }                   
 
             Console.WriteLine("Press any key to exit");
+            var counter = 0;
             while (true)
             {
                 Thread.Sleep(100);
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
+                counter++;
+                //if (counter == 200)
+                //    break;
             }
             Console.ReadLine();
         }
 
         private static void MyHandler(object sender, UnhandledExceptionEventArgs e)
         {
-            Console.WriteLine(e.ExceptionObject);
+            Console.WriteLine(e.ExceptionObject);            
         }
 
         private static void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
         {
-            Console.WriteLine(e.Exception);
+           // Console.WriteLine(e.Exception);
         }
     }
 }

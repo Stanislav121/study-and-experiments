@@ -14,13 +14,31 @@ namespace TryCatchFinally
             //ExceptionsInMainThreadNotCatched();
             //ExceptionsInMainThreadCatched();
             //ExceptionsInBackgroundThreadNotCatched();
-            //ExceptionsInThreadPoolThreadNotCatched();
-            ExceptionsInTaskNotCached();
+            ExceptionsInThreadPoolThreadNotCatched();
+            //ExceptionsInTaskNotCached();
             //ExceptionsInTaskCached();
             //Sample();
-            Console.WriteLine("Aaa"); 
-            
-            
+            //ExceptionsInTaskNotCachedAndThrow();
+            Console.WriteLine("Aaa");           
+        }
+
+        private static void ExceptionsInTaskNotCachedAndThrow()
+        {
+            var t = StartTaskWithExceptionAsync();
+            t.Wait();
+        }
+
+        private async static Task StartTaskWithExceptionAsync()
+        {
+            var task = Task.Run(ThrowException);
+
+            await task;
+        }
+
+        private static void ThrowException()
+        {
+            //Thread.Sleep(100); 
+            throw new Exception("Aaaaa");
         }
 
         private static void Sample()
@@ -78,7 +96,7 @@ namespace TryCatchFinally
         {
             var t = Task.Run(ThrowException);
             Console.WriteLine("111");
-            Thread.Sleep(5000);
+            Thread.Sleep(3000);
             var ex = t.Exception;
             Console.WriteLine("Exep");
         }
@@ -127,10 +145,6 @@ namespace TryCatchFinally
             throw new Exception("Aaaaa");
         }
 
-        private static void ThrowException()
-        {
-            //Thread.Sleep(100); 
-            throw new Exception("Aaaaa");
-        }
+        
     }
 }
