@@ -15,14 +15,74 @@ namespace TryCatchFinally
             //ExceptionsInMainThreadCatched();
             //ExceptionsInBackgroundThreadNotCatched();
             //ExceptionsInThreadPoolThreadNotCatched();
-            //ExceptionsInTaskNotCached();
-            ExceptionsInTaskCached();
+            ExceptionsInTaskNotCached();
+            //ExceptionsInTaskCached();
+            //Sample();
+            Console.WriteLine("Aaa"); 
+            
+            
         }
+
+        private static void Sample()
+        {
+            try
+            {
+                Task t1 = Task.Run(ThrowException);
+                Task t2 = Task.Run(ThrowException);
+                Task.WaitAll(t1, t2);
+            }
+            catch (AggregateException ex)
+            {
+                Console.WriteLine("Sample()"); 
+            }
+        }
+
+        private static void Try(string[] args)
+        {
+            Task someTask;
+            try
+            {
+                someTask = Task.Factory.StartNew(() => throw new Exception());
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("1. Bam");
+                return;
+            }
+
+            try
+            {
+                AggregateException someTaskException = someTask.Exception;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("2. Bam-bam");
+                return;
+            }
+
+            try
+            {
+                someTask.GetAwaiter().GetResult();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("3. Bam-bam-bam");
+                return;
+            }
+
+            Console.WriteLine("4. No bam");
+        }
+
 
         private static void ExceptionsInTaskNotCached()
         {
-            Task.Run(() => throw new Exception("Taaaaaaaaaaaaask")); ;
+            var t = Task.Run(ThrowException);
+            Console.WriteLine("111");
+            Thread.Sleep(5000);
+            var ex = t.Exception;
+            Console.WriteLine("Exep");
         }
+
 
         private static void ExceptionsInTaskCached()
         {
@@ -69,6 +129,7 @@ namespace TryCatchFinally
 
         private static void ThrowException()
         {
+            //Thread.Sleep(100); 
             throw new Exception("Aaaaa");
         }
     }
