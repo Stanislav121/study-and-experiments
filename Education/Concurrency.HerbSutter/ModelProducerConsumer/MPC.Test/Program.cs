@@ -11,8 +11,8 @@ namespace MPC.Test
     {
         static void Main(string[] args)
         {
-            //var utilizer = new GoalCounter();
-            var utilizer = new EmptyUtilizer();
+            var utilizer = new GoalCounter();
+            //var utilizer = new EmptyUtilizer();
             TestMPCs(utilizer);
 
             //TestConcurrentQueueDIY();

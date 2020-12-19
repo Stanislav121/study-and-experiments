@@ -30,10 +30,10 @@ namespace MPC.WikiProcessor
             Console.WriteLine($"    {resultSequential.Item1} {resultSequential.Item2} {resultSequential.Item3}");
 
             var runWithSpin = false;
-            RunWork(filePath, pagesToProcess, true, runWithSpin, 18, true, results);
-            RunWork(filePath, pagesToProcess, true, runWithSpin, 6, true, results);
-            RunWork(filePath, pagesToProcess, true, runWithSpin, 6, false, results);
-            RunWork(filePath, pagesToProcess, true, runWithSpin, 18, false, results);
+            RunWork(filePath, pagesToProcess, runWithSpin, 18, true, results);
+            RunWork(filePath, pagesToProcess, runWithSpin, 6, true, results);
+            RunWork(filePath, pagesToProcess, runWithSpin, 6, false, results);
+            RunWork(filePath, pagesToProcess, runWithSpin, 18, false, results);
 
 
             results.ForEach(p => Console.WriteLine($"{resultSequential.Item3 / p.Item3}"));
@@ -45,10 +45,10 @@ namespace MPC.WikiProcessor
 
         }
 
-        private static void RunWork(string filePath, long pagesToProcess, bool runSafely, bool runWithSpin, int nConsumers, bool byTasks, List<Tuple<string, long, TimeSpan>> results)
+        private static void RunWork(string filePath, long pagesToProcess, bool runWithSpin, int nConsumers, bool byTasks, List<Tuple<string, long, TimeSpan>> results)
         {
             var d = new WikiProcessorParallel();
-            var resultSequentialD = d.ProcessMostFrequentWord(filePath, pagesToProcess, runSafely, runWithSpin, nConsumers, byTasks);
+            var resultSequentialD = d.ProcessMostFrequentWord(filePath, pagesToProcess, runWithSpin, nConsumers, byTasks);
             results.Add(resultSequentialD);
             Console.WriteLine($"S   {resultSequentialD.Item1} {resultSequentialD.Item2} {resultSequentialD.Item3}");
         }

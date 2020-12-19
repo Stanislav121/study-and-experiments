@@ -9,14 +9,14 @@ namespace MPC.WikiProcessor
 {
     class WikiProcessorParallel
     {
-        public Tuple<string, long, TimeSpan> ProcessMostFrequentWord(string filePath, long pagesToProcess, bool runSafely, bool runWithSpin, int nConsumers, bool byTasks)
+        public Tuple<string, long, TimeSpan> ProcessMostFrequentWord(string filePath, long pagesToProcess, bool runWithSpin, int nConsumers, bool byTasks)
         {
             Stopwatch watch = new Stopwatch();
             watch.Start();
             var transmitter = new BlockingCollection<string>();
             var producer = new PageProducer(filePath, pagesToProcess, transmitter);
 
-            var results = byTasks ? WorkByTasks(transmitter, producer, runSafely, runWithSpin, nConsumers) : WorkByParallel(transmitter, producer, runSafely, runWithSpin, nConsumers);
+            var results = byTasks ? WorkByTasks(transmitter, producer, runWithSpin, nConsumers) : WorkByParallel(transmitter, producer, runWithSpin, nConsumers);
 
             var generalWordsCount = new Dictionary<string, long>(results[0]);
             for(int i = 1; i < nConsumers; i++ )
@@ -39,11 +39,11 @@ namespace MPC.WikiProcessor
             return Tuple.Create(mostFrequentWord, biggestCount, watch.Elapsed);
         }
 
-        private Dictionary<string, long>[] WorkByTasks(BlockingCollection<string> transmitter, PageProducer producer, bool runSafely, bool runWithSpin, int nConsumers)
+        private Dictionary<string, long>[] WorkByTasks(BlockingCollection<string> transmitter, PageProducer producer, bool runWithSpin, int nConsumers)
         {
             var tasks = new Task<Dictionary<string, long>>[nConsumers];
             for (int i = 0; i < nConsumers; i++)
-                tasks[i] = Task.Factory.StartNew((b) => { return new PageConsumer(transmitter).Run(runSafely, runWithSpin); }, runSafely);
+                tasks[i] = Task.Factory.StartNew(() => { return new PageConsumer(transmitter).Run(runWithSpin); });
 
             Task.Run(producer.Run);
 
@@ -55,13 +55,13 @@ namespace MPC.WikiProcessor
             return results;
         }
 
-        private Dictionary<string, long>[] WorkByParallel(BlockingCollection<string> transmitter, PageProducer producer, bool runSafely, bool runWithSpin, int nConsumers)
+        private Dictionary<string, long>[] WorkByParallel(BlockingCollection<string> transmitter, PageProducer producer, bool runWithSpin, int nConsumers)
         {
             Task.Run(producer.Run);
 
             var results = new Dictionary<string, long>[nConsumers];
             Parallel.For(0, results.Length,
-              i => results[i] = new PageConsumer(transmitter).Run(runSafely, runWithSpin));
+              i => results[i] = new PageConsumer(transmitter).Run(runWithSpin));
 
             return results;
         }
