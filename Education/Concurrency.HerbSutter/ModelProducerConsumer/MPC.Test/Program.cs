@@ -86,6 +86,7 @@ namespace MPC.Test
 
         private static void RunMPC(ITransmitter transmitter, IGoalUtilizer utilizer)
         {
+            utilizer.Reset();
             var generator = new GoalGenerator();
             IList<Producer> producers = new List<Producer>() { new Producer(generator, transmitter) };
             IList<Consumer> consumers = new List<Consumer>();

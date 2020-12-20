@@ -1,17 +1,23 @@
 ﻿using MPC.Core;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace MPC.Test
 {
     class GoalCounter : IGoalUtilizer
     {
-        private readonly SortedSet<long> _processedIds;
+        private List<long> _processedIds;
         private readonly object _sync = new object();
         public GoalCounter()
         {
-            _processedIds = new SortedSet<long>();
+            _processedIds = new List<long>();
+        }
+
+        public void Reset()
+        {
+            _processedIds = new List<long>();
         }
         public void Utilize(Goal goal)
         {
@@ -28,13 +34,13 @@ namespace MPC.Test
 
         private bool IsAllGoalsProcessed()
         {
-            var lastId = _processedIds.Max;
-            var createdIds = new SortedSet<long>();
+            var lastId = _processedIds.Max();
+            var createdIds = new List<long>();
             for (long i = 0; i <= lastId; i++)
             {
                 createdIds.Add(i);
             }
-            return _processedIds.IsSubsetOf(createdIds) && createdIds.IsSubsetOf(_processedIds);
+            return createdIds.Intersect(_processedIds).LongCount() == _processedIds.Count && createdIds.Count == _processedIds.Count;
         }
     }
 }

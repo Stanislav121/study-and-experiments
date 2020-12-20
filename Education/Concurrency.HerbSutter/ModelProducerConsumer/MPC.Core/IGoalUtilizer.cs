@@ -8,6 +8,8 @@ namespace MPC.Core
     {
         void Utilize(Goal goal);
 
+        void Reset();
+
         bool? WasUtilizeSuccessful();
     }
 }

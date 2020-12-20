@@ -12,6 +12,11 @@ namespace MPC.Test
             // Empty method, no action
         }
 
+        public void Reset()
+        {
+            // Empty method, no action
+        }
+
         public bool? WasUtilizeSuccessful()
         {
             return null;
