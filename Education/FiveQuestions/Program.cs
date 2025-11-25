@@ -11,9 +11,9 @@ namespace FiveQuestions
     {
         static void Main(string[] args)
         {
-            FirstQuestion();
-            SecondQuestion();
-            //ThirdQuestion();
+            //FirstQuestion();
+            //SecondQuestion();
+            ThirdQuestion();
             Console.ReadLine();
         }
 

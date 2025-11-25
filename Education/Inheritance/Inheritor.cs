@@ -16,7 +16,7 @@ namespace Inheritance
         public void Foo()
         {
             Console.WriteLine("Inheritor");
-            base.Foo();
+            //.Foo();
         }
 
         void IInterface1.Foo()

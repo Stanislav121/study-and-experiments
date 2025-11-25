@@ -12,10 +12,10 @@ namespace Inheritance
         {
             var a = new Inheritor();
 
-            CallMethodA(a);
+            //CallMethodA(a);
             CallMethodI(a);
-            CallMethodI1(a);
-            CallMethodI2(a);            
+            //CallMethodI1(a);
+            //CallMethodI2(a);            
 
             Console.ReadLine();
         }

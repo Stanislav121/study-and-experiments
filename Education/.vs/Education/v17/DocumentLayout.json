@@ -1,0 +1,143 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Study\\study-and-experiments\\Education\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{778CFC89-23A5-4888-849B-834174A5DC62}|MetanitQuestions\\MetanitQuestions.csproj|d:\\study\\study-and-experiments\\education\\metanitquestions\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{778CFC89-23A5-4888-849B-834174A5DC62}|MetanitQuestions\\MetanitQuestions.csproj|solutionrelative:metanitquestions\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6576D41F-916D-4F47-AC77-FB575B6377E1}|Metanit\\Metanit.csproj|d:\\study\\study-and-experiments\\education\\metanit\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6576D41F-916D-4F47-AC77-FB575B6377E1}|Metanit\\Metanit.csproj|solutionrelative:metanit\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3BDC8124-78E4-44BE-9902-1FC8682BC2AC}|FiveQuestions\\FiveQuestions.csproj|d:\\study\\study-and-experiments\\education\\fivequestions\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3BDC8124-78E4-44BE-9902-1FC8682BC2AC}|FiveQuestions\\FiveQuestions.csproj|solutionrelative:fivequestions\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD4BD333-A3CF-4C0A-918F-E298F22F6BCC}|Inheritance\\Inheritance.csproj|d:\\study\\study-and-experiments\\education\\inheritance\\inheritor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD4BD333-A3CF-4C0A-918F-E298F22F6BCC}|Inheritance\\Inheritance.csproj|solutionrelative:inheritance\\inheritor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD4BD333-A3CF-4C0A-918F-E298F22F6BCC}|Inheritance\\Inheritance.csproj|d:\\study\\study-and-experiments\\education\\inheritance\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD4BD333-A3CF-4C0A-918F-E298F22F6BCC}|Inheritance\\Inheritance.csproj|solutionrelative:inheritance\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD4BD333-A3CF-4C0A-918F-E298F22F6BCC}|Inheritance\\Inheritance.csproj|d:\\study\\study-and-experiments\\education\\inheritance\\abstractclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD4BD333-A3CF-4C0A-918F-E298F22F6BCC}|Inheritance\\Inheritance.csproj|solutionrelative:inheritance\\abstractclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD4BD333-A3CF-4C0A-918F-E298F22F6BCC}|Inheritance\\Inheritance.csproj|d:\\study\\study-and-experiments\\education\\inheritance\\interface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD4BD333-A3CF-4C0A-918F-E298F22F6BCC}|Inheritance\\Inheritance.csproj|solutionrelative:inheritance\\interface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{dcc4ea97-1c0c-482b-b205-e541c0df9728}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Study\\study-and-experiments\\Education\\MetanitQuestions\\Program.cs",
+              "RelativeDocumentMoniker": "MetanitQuestions\\Program.cs",
+              "ToolTip": "D:\\Study\\study-and-experiments\\Education\\MetanitQuestions\\Program.cs",
+              "RelativeToolTip": "MetanitQuestions\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-16T09:26:16.1Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Study\\study-and-experiments\\Education\\Metanit\\Program.cs",
+              "RelativeDocumentMoniker": "Metanit\\Program.cs",
+              "ToolTip": "D:\\Study\\study-and-experiments\\Education\\Metanit\\Program.cs",
+              "RelativeToolTip": "Metanit\\Program.cs",
+              "ViewState": "AgIAAE8AAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-16T09:26:06.684Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Study\\study-and-experiments\\Education\\FiveQuestions\\Program.cs",
+              "RelativeDocumentMoniker": "FiveQuestions\\Program.cs",
+              "ToolTip": "D:\\Study\\study-and-experiments\\Education\\FiveQuestions\\Program.cs",
+              "RelativeToolTip": "FiveQuestions\\Program.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAgwBUAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-16T09:01:59.777Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Study\\study-and-experiments\\Education\\Inheritance\\Program.cs",
+              "RelativeDocumentMoniker": "Inheritance\\Program.cs",
+              "ToolTip": "D:\\Study\\study-and-experiments\\Education\\Inheritance\\Program.cs",
+              "RelativeToolTip": "Inheritance\\Program.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA8AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-16T08:57:12.271Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AbstractClass.cs",
+              "DocumentMoniker": "D:\\Study\\study-and-experiments\\Education\\Inheritance\\AbstractClass.cs",
+              "RelativeDocumentMoniker": "Inheritance\\AbstractClass.cs",
+              "ToolTip": "D:\\Study\\study-and-experiments\\Education\\Inheritance\\AbstractClass.cs",
+              "RelativeToolTip": "Inheritance\\AbstractClass.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-16T08:59:41.523Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Interface.cs",
+              "DocumentMoniker": "D:\\Study\\study-and-experiments\\Education\\Inheritance\\Interface.cs",
+              "RelativeDocumentMoniker": "Inheritance\\Interface.cs",
+              "ToolTip": "D:\\Study\\study-and-experiments\\Education\\Inheritance\\Interface.cs",
+              "RelativeToolTip": "Inheritance\\Interface.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-16T08:59:34.496Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Inheritor.cs",
+              "DocumentMoniker": "D:\\Study\\study-and-experiments\\Education\\Inheritance\\Inheritor.cs",
+              "RelativeDocumentMoniker": "Inheritance\\Inheritor.cs",
+              "ToolTip": "D:\\Study\\study-and-experiments\\Education\\Inheritance\\Inheritor.cs",
+              "RelativeToolTip": "Inheritance\\Inheritor.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-16T08:59:29.367Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
